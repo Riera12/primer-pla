@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Primer Pla — Crítica de Cinema en Català</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080808; --bg2: #0f0f0f; --bg3: #161616;
+    --text: #e8e0d4; --text-muted: #7a7268;
+    --accent: #c8a96e; --border: #222; --white: #f5f0e8;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'Josefin Sans', sans-serif; font-weight: 300; letter-spacing: 0.03em; overflow-x: hidden; }
+
+  body::before {
+    content: ''; position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 1000; opacity: 0.5;
+  }
+
+
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.5rem 4rem;
+    background: linear-gradient(to bottom, rgba(8,8,8,0.98), transparent);
+    border-bottom: 1px solid transparent; transition: border-color 0.3s, background 0.3s;
+  }
+  nav.scrolled { background: rgba(8,8,8,0.97); border-bottom-color: var(--border); }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 300; letter-spacing: 0.15em; color: var(--white); text-decoration: none; text-transform: uppercase; }
+  .nav-logo span { color: var(--accent); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase; transition: color 0.3s; }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  #hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 4rem 5rem; position: relative; overflow: hidden; }
+  .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 70% 50%, rgba(200,169,110,0.05) 0%, transparent 60%), radial-gradient(ellipse at 20% 80%, rgba(139,94,60,0.08) 0%, transparent 50%); }
+  .hero-poster { position: absolute; right: 0; top: 0; height: 100%; width: 45%; overflow: hidden; }
+  .hero-poster img { width: 100%; height: 100%; object-fit: cover; object-position: center top; opacity: 0; transition: opacity 1s ease; filter: grayscale(40%) contrast(1.05); }
+  .hero-poster img.loaded { opacity: 0.22; }
+  .hero-poster::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, var(--bg) 0%, rgba(8,8,8,0.4) 60%), linear-gradient(to top, var(--bg) 0%, transparent 25%); z-index: 1; }
+  .hero-eyebrow { font-size: 0.65rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--accent); margin-bottom: 1.5rem; display: flex; align-items: center; gap: 1rem; position: relative; z-index: 2; }
+  .hero-eyebrow::before { content: ''; width: 40px; height: 1px; background: var(--accent); display: inline-block; }
+  h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.5rem, 9vw, 8rem); font-weight: 300; line-height: 0.9; color: var(--white); max-width: 900px; position: relative; z-index: 2; }
+  h1 em { font-style: italic; color: var(--accent); }
+  .hero-sub { margin-top: 2rem; font-size: 0.8rem; letter-spacing: 0.2em; color: var(--text-muted); text-transform: uppercase; max-width: 500px; line-height: 2; position: relative; z-index: 2; }
+  .scroll-hint { position: absolute; bottom: 2.5rem; right: 4rem; display: flex; align-items: center; gap: 0.8rem; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--text-muted); writing-mode: vertical-rl; z-index: 2; }
+  .scroll-hint::after { content: ''; width: 1px; height: 50px; background: linear-gradient(to bottom, var(--accent), transparent); animation: scrollLine 2s ease-in-out infinite; }
+  @keyframes scrollLine { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+  /* SECTION UTILS */
+  section { padding: 7rem 4rem; position: relative; }
+  .section-label { font-size: 0.6rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: flex; align-items: center; gap: 1rem; }
+  .section-label::after { content: ''; flex: 1; max-width: 40px; height: 1px; background: var(--accent); }
+  h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 4vw, 3.5rem); font-weight: 300; color: var(--white); line-height: 1.1; margin-bottom: 3rem; }
+
+  /* FEATURED */
+  #featured { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .featured-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 300px 1fr; gap: 5rem; align-items: start; }
+  .featured-meta { position: sticky; top: 8rem; }
+  .featured-tag { display: inline-block; font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--bg); background: var(--accent); padding: 0.3rem 0.8rem; margin-bottom: 1.5rem; }
+
+  .featured-poster { width: 100%; aspect-ratio: 2/3; overflow: hidden; position: relative; background: var(--bg3); border: 1px solid var(--border); margin-bottom: 2rem; }
+  .featured-poster img { width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.7s; filter: grayscale(10%); }
+  .featured-poster img.loaded { opacity: 1; }
+  .poster-ph { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; letter-spacing: 0.2em; color: var(--border); text-transform: uppercase; background: repeating-linear-gradient(45deg, var(--bg3) 0, var(--bg3) 10px, var(--bg) 10px, var(--bg) 20px); }
+
+  .featured-title { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-weight: 300; color: var(--white); line-height: 1; margin-bottom: 0.4rem; }
+  .featured-director { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.5rem; }
+  .rating { display: flex; align-items: baseline; gap: 0.3rem; margin-bottom: 1.5rem; }
+  .rating-num { font-family: 'Cormorant Garamond', serif; font-size: 3rem; color: var(--accent); font-weight: 300; line-height: 1; }
+  .rating-denom { font-size: 0.75rem; color: var(--text-muted); }
+  .featured-excerpt { font-size: 1rem; line-height: 1.8; color: var(--text-muted); margin-bottom: 1.5rem; font-style: italic; font-family: 'Cormorant Garamond', serif; }
+  .read-more { font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent); padding-bottom: 0.2rem; cursor: pointer; transition: opacity 0.2s; }
+  .read-more:hover { opacity: 0.6; }
+  .featured-body { border-left: 1px solid var(--border); padding-left: 5rem; }
+  .featured-body p { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; line-height: 1.85; color: var(--text); margin-bottom: 1.5rem; }
+
+  /* GRID */
+  #critiques { max-width: 1200px; margin: 0 auto; padding: 5rem 4rem; }
+  .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+
+  .review-card { background: var(--bg2); border: 1px solid var(--border); cursor: pointer; transition: background 0.3s; position: relative; overflow: hidden; display: flex; flex-direction: column; }
+  .review-card::before { content: ''; position: absolute; bottom: 0; left: 0; height: 2px; width: 0; background: var(--accent); transition: width 0.4s; z-index: 2; }
+  .review-card:hover { background: var(--bg3); }
+  .review-card:hover::before { width: 100%; }
+
+  .card-poster { width: 100%; aspect-ratio: 16/9; overflow: hidden; position: relative; background: var(--bg3); flex-shrink: 0; }
+  .card-poster img { width: 100%; height: 100%; object-fit: cover; object-position: center 20%; opacity: 0; transition: opacity 0.5s, transform 0.5s; filter: grayscale(20%) brightness(0.75); }
+  .card-poster img.loaded { opacity: 1; }
+  .review-card:hover .card-poster img { transform: scale(1.05); filter: grayscale(0%) brightness(0.65); }
+  .card-poster::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 30%, var(--bg2) 100%); transition: background 0.3s; }
+  .review-card:hover .card-poster::after { background: linear-gradient(to bottom, transparent 30%, var(--bg3) 100%); }
+  .card-poster-ph { position: absolute; inset: 0; background: repeating-linear-gradient(45deg, var(--bg3) 0, var(--bg3) 10px, var(--bg) 10px, var(--bg) 20px); display: flex; align-items: center; justify-content: center; font-size: 0.58rem; letter-spacing: 0.2em; color: var(--border); text-transform: uppercase; }
+
+  .card-body { padding: 1.6rem 1.8rem 1.5rem; flex: 1; display: flex; flex-direction: column; }
+  .card-festival { font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.6rem; }
+  .card-title { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 300; color: var(--white); line-height: 1.1; margin-bottom: 0.2rem; }
+  .card-director { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1rem; }
+  .card-excerpt { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; line-height: 1.7; color: var(--text-muted); font-style: italic; flex: 1; margin-bottom: 1.2rem; }
+  .card-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 1rem; border-top: 1px solid var(--border); margin-top: auto; }
+  .card-rating { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--accent); }
+  .card-type { font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-muted); }
+
+  /* ABOUT */
+  #about { background: var(--bg2); border-top: 1px solid var(--border); }
+  .about-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.8fr; gap: 6rem; align-items: start; }
+  .about-sticky { position: sticky; top: 8rem; }
+  .about-name { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; color: var(--white); line-height: 1; margin-bottom: 0.5rem; }
+  .about-role { font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 2rem; }
+  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
+  .stat { border: 1px solid var(--border); padding: 1rem; text-align: center; }
+  .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--accent); display: block; }
+  .stat-label { font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); display: block; margin-top: 0.3rem; }
+  .about-body p { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; line-height: 1.9; color: var(--text); margin-bottom: 1.5rem; }
+  .about-body p:first-child::first-letter { font-size: 3.5rem; float: left; line-height: 0.8; margin-right: 0.1em; color: var(--accent); font-weight: 300; }
+  .manifesto { border-left: 2px solid var(--accent); padding-left: 2rem; margin: 2.5rem 0; }
+  .manifesto p { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-style: italic; line-height: 1.6; color: var(--white) !important; }
+
+  /* FOOTER */
+  footer { border-top: 1px solid var(--border); padding: 3rem 4rem; display: flex; justify-content: space-between; align-items: center; }
+  .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 300; letter-spacing: 0.15em; color: var(--text-muted); text-transform: uppercase; }
+  .footer-logo span { color: var(--accent); }
+  .footer-copy { font-size: 0.6rem; letter-spacing: 0.2em; color: var(--text-muted); text-transform: uppercase; }
+  .footer-lang { font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); }
+
+  /* MODAL */
+  .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.93); z-index: 200; display: flex; align-items: center; justify-content: center; padding: 2rem; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+  .modal-overlay.open { opacity: 1; pointer-events: all; }
+  .modal { background: var(--bg2); border: 1px solid var(--border); max-width: 800px; width: 100%; max-height: 88vh; overflow: hidden; display: grid; grid-template-columns: 220px 1fr; transform: translateY(20px); transition: transform 0.3s; }
+  .modal-overlay.open .modal { transform: translateY(0); }
+  .modal-poster-wrap { position: relative; background: var(--bg3); overflow: hidden; min-height: 300px; }
+  .modal-poster-wrap img { width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.5s; position: relative; z-index: 1; }
+  .modal-poster-wrap img.loaded { opacity: 1; }
+  .modal-poster-ph { position: absolute; inset: 0; z-index: 0; background: repeating-linear-gradient(45deg, var(--bg3) 0, var(--bg3) 10px, var(--bg) 10px, var(--bg) 20px); }
+  .modal-text { padding: 2.5rem; overflow-y: auto; max-height: 88vh; position: relative; }
+  .modal-close { position: absolute; top: 1rem; right: 1rem; background: none; border: 1px solid var(--border); color: var(--text-muted); font-size: 0.65rem; cursor: pointer; font-family: 'Josefin Sans', sans-serif; letter-spacing: 0.15em; padding: 0.35rem 0.7rem; transition: all 0.2s; }
+  .modal-close:hover { color: var(--accent); border-color: var(--accent); }
+  .modal-tag { font-size: 0.58rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+  .modal h3 { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: var(--white); line-height: 1; margin-bottom: 0.3rem; }
+  .modal-director { font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 1.2rem; }
+  .modal-rating { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; color: var(--accent); margin-bottom: 1.5rem; }
+  .modal-divider { height: 1px; background: var(--border); margin: 1rem 0 1.5rem; }
+  .modal p { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; line-height: 1.85; color: var(--text); margin-bottom: 1.2rem; }
+
+  /* ANIMATIONS */
+  .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 960px) {
+    nav, section, #critiques { padding-left: 2rem; padding-right: 2rem; }
+    #hero { padding: 0 2rem 4rem; }
+    .featured-inner, .about-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .featured-body { border-left: none; padding-left: 0; border-top: 1px solid var(--border); padding-top: 3rem; }
+    .reviews-grid { grid-template-columns: 1fr 1fr; }
+    .modal { grid-template-columns: 1fr; }
+    .modal-poster-wrap { height: 220px; min-height: unset; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+    #api-key-input { width: 100%; }
+  }
+  @media (max-width: 600px) { .reviews-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">Primer<span>·</span>Pla</a>
+  <ul class="nav-links">
+    <li><a href="#critiques">Crítiques</a></li>
+    <li><a href="#about">Sobre</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-poster"><img id="hero-img" src="" alt="Silent Friend"></div>
+  <div class="hero-eyebrow">Crítica de cinema en català</div>
+  <h1>El cinema<br>vist de <em>prop.</em></h1>
+  <p class="hero-sub">Cobertura de festivals internacionals — Venècia, Sitges, Canes — des d'una mirada catalana.</p>
+  <div class="scroll-hint">Descobreix</div>
+</section>
+
+<!-- FEATURED -->
+<section id="featured">
+  <div class="featured-inner">
+    <div class="featured-meta fade-in">
+      <div class="featured-tag">Destacat · Venècia 2025</div>
+      <div class="featured-poster">
+        <div class="poster-ph">Pòster</div>
+        <img id="feat-img" src="" alt="Silent Friend">
+      </div>
+      <div class="featured-title">Silent Friend</div>
+      <div class="featured-director">Ildikó Enyedi</div>
+      <div class="rating"><span class="rating-num">4.5</span><span class="rating-denom">/ 5</span></div>
+      <p class="featured-excerpt">"Una obra que transcendeix la pantalla i connecta el quotidià amb l'etern."</p>
+      <a class="read-more" onclick="openModal('silent')">Llegir la crítica completa</a>
+    </div>
+    <div class="featured-body fade-in">
+      <p>La cineasta hongaresa Ildikó Enyedi torna presentant a Venècia <em>Silent Friend</em>, una evolució natural de la seva filmografia on temàtiques com la connexió entre humans i l'intangible s'expandeixen cap a la ciència i la naturalesa, sent un homenatge sincer a la investigació impulsada per la curiositat pura.</p>
+      <p>Protagonitzada pel llegendari Tony Leung —amb una presència magnètica que recorda els seus papers en <em>In the Mood for Love</em>— la pel·lícula ens explica tres histories entrelligades connectades per un arbre centenari de Ginkgo biloba que funciona com un personatge omnipresent i silenciós.</p>
+      <a class="read-more" onclick="openModal('silent')">Continuar llegint →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CRITIQUES -->
+<div id="critiques">
+  <div class="section-label">Arxiu</div>
+  <h2>Totes les crítiques</h2>
+  <div class="reviews-grid">
+
+    <div class="review-card fade-in" onclick="openModal('alpha')">
+      <div class="card-poster">
+        <div class="card-poster-ph">Alpha</div>
+        <img data-q="Alpha 2025 Julia Ducournau" src="" alt="Alpha">
+      </div>
+      <div class="card-body">
+        <div class="card-festival">Sitges 2025</div>
+        <div class="card-title">Alpha</div>
+        <div class="card-director">Julia Ducournau</div>
+        <p class="card-excerpt">"Sols per la seva visceralitat, ja val la pena viure-la al cinema."</p>
+        <div class="card-footer"><span class="card-rating">3 / 5</span><span class="card-type">Crítica</span></div>
+      </div>
+    </div>
+
+    <div class="review-card fade-in" onclick="openModal('goodboy')">
+      <div class="card-poster">
+        <div class="card-poster-ph">Good Boy</div>
+        <img data-q="Good Boy 2024 film" src="" alt="Good Boy">
+      </div>
+      <div class="card-body">
+        <div class="card-festival">Sitges 2025</div>
+        <div class="card-title">Good Boy</div>
+        <div class="card-director">Ben Leonberg</div>
+        <p class="card-excerpt">"Una de les millors actuacions animals que s'han vist a la pantalla gran."</p>
+        <div class="card-footer"><span class="card-rating">3 / 5</span><span class="card-type">Breu</span></div>
+      </div>
+    </div>
+
+    <div class="review-card fade-in" onclick="openModal('romeria')">
+      <div class="card-poster">
+        <div class="card-poster-ph">Romería</div>
+        <img data-q="Romeria Carla Simon 2025" src="" alt="Romería">
+      </div>
+      <div class="card-body">
+        <div class="card-festival">Sitges 2025</div>
+        <div class="card-title">Romería</div>
+        <div class="card-director">Carla Simón</div>
+        <p class="card-excerpt">"Un realisme poètic devastador impregnat d'una bellesa plena de simbolisme."</p>
+        <div class="card-footer"><span class="card-rating">4 / 5</span><span class="card-type">Breu</span></div>
+      </div>
+    </div>
+
+    <div class="review-card fade-in" onclick="openModal('furious')">
+      <div class="card-poster">
+        <div class="card-poster-ph">The Furious</div>
+        <img data-q="The Furious Tanigaki 2024" src="" alt="The Furious">
+      </div>
+      <div class="card-body">
+        <div class="card-festival">Sitges 2025</div>
+        <div class="card-title">The Furious</div>
+        <div class="card-director">Kenji Tanigaki</div>
+        <p class="card-excerpt">"Increïbles seqüències d'acció perfectament coreografiades. Una sorpresa brutal."</p>
+        <div class="card-footer"><span class="card-rating">4 / 5</span><span class="card-type">Breu</span></div>
+      </div>
+    </div>
+
+    <div class="review-card fade-in" onclick="openModal('lostlands')">
+      <div class="card-poster">
+        <div class="card-poster-ph">In the Lost Lands</div>
+        <img data-q="In the Lost Lands 2025" src="" alt="In the Lost Lands">
+      </div>
+      <div class="card-body">
+        <div class="card-festival">Sitges 2025</div>
+        <div class="card-title">In the Lost Lands</div>
+        <div class="card-director">Paul W.S. Anderson</div>
+        <p class="card-excerpt">"Un autèntic despropòsit. Diàlegs sense vida i personatges sense carisma."</p>
+        <div class="card-footer"><span class="card-rating">1 / 5</span><span class="card-type">Breu</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-inner">
+    <div class="about-sticky fade-in">
+      <div class="section-label">Qui som</div>
+      <div class="about-name">Primer<br>Pla</div>
+      <div class="about-role">Crítica cinematogràfica en català</div>
+      <div class="about-stats">
+        <div class="stat"><span class="stat-num">5</span><span class="stat-label">Crítiques</span></div>
+        <div class="stat"><span class="stat-num">3</span><span class="stat-label">Festivals</span></div>
+        <div class="stat"><span class="stat-num">CA</span><span class="stat-label">Llengua</span></div>
+        <div class="stat"><span class="stat-num">2025</span><span class="stat-label">Fundació</span></div>
+      </div>
+    </div>
+    <div class="about-body fade-in">
+      <p>Primer Pla neix de la necessitat de construir una veu crítica de cinema en català que cobreixi els grans festivals internacionals — Venècia, Sitges, Canes — i els posi a l'abast d'un públic que, massa sovint, no troba referents propis.</p>
+      <div class="manifesto"><p>"El cinema és universal, però la mirada és sempre situada. La nostra mirada parla en català."</p></div>
+      <p>Les crítiques que trobareu aquí no busquen la neutralitat: busquen la precisió. Parlem d'obres d'autor, de cinema de festival, de pel·lícules que desafien el que esperem de la pantalla. Ho fem amb rigor, però també amb passió, perquè la crítica és, ella mateixa, un acte creatiu.</p>
+      <p>Primer Pla és un projecte independent, amb vocació d'expandir-se i de ser present als principals certàmens cinematogràfics europeus a partir de 2026.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Primer<span>·</span>Pla</div>
+  <div class="footer-copy">© 2025 Primer Pla — Tots els drets reservats</div>
+  <div class="footer-lang">En català</div>
+</footer>
+
+<!-- MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal">
+    <div class="modal-poster-wrap">
+      <div class="modal-poster-ph"></div>
+      <img id="modal-img" src="" alt="">
+    </div>
+    <div class="modal-text">
+      <button class="modal-close" onclick="closeModalBtn()">✕ Tancar</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const IMG = 'https://image.tmdb.org/t/p/w780';
+const KEY = 'a086250f0c1111d515ce7453e899eb8a';
+
+// TMDB IDs hardcoded — més fiable que buscar per títol
+const MOVIE_IDS = {
+  silent:     1168719,
+  alpha:      1284460,
+  goodboy:    1422096,
+  romeria:    1182861,
+  furious:    1280738,
+  lostlands:  324544,
+};
+
+function setImg(el, src) {
+  if (!src || !el) return;
+  el.src = src;
+  el.onload = () => el.classList.add('loaded');
+}
+
+async function getPosterById(id) {
+  try {
+    const r = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${KEY}`);
+    const d = await r.json();
+    return d.poster_path ? IMG + d.poster_path : null;
+  } catch { return null; }
+}
+
+async function loadAllPosters() {
+  const keys = ['alpha','goodboy','romeria','furious','lostlands'];
+  const cards = document.querySelectorAll('.card-poster img');
+
+  // Hero + featured (Silent Friend)
+  const silentSrc = await getPosterById(MOVIE_IDS.silent);
+  setImg(document.getElementById('hero-img'), silentSrc);
+  setImg(document.getElementById('feat-img'), silentSrc);
+  if (silentSrc && reviews.silent) reviews.silent._p = silentSrc;
+
+  // Cards
+  for (let i = 0; i < keys.length; i++) {
+    const key = keys[i];
+    const id  = MOVIE_IDS[key];
+    if (!id) continue;
+    const src = await getPosterById(id);
+    setImg(cards[i], src);
+    if (src && reviews[key]) reviews[key]._p = src;
+  }
+}
+
+// NAV scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', scrollY > 50);
+});
+
+// Fade-in observer
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 120);
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+// ── STAR RATING ───────────────────────────────────────────
+function starSVG(type, size) {
+  const filled = type === 'full' ? '#c8a96e' : 'none';
+  if (type === 'half') {
+    return `<svg width="${size}" height="${size}" viewBox="0 0 24 24"><defs><linearGradient id="hg${size}"><stop offset="50%" stop-color="#c8a96e"/><stop offset="50%" stop-color="none" stop-opacity="0"/></linearGradient></defs><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" fill="url(#hg${size})" stroke="#c8a96e" stroke-width="1.5" stroke-linejoin="round"/></svg>`;
+  }
+  return `<svg width="${size}" height="${size}" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26" fill="${filled}" stroke="#c8a96e" stroke-width="1.5" stroke-linejoin="round"/></svg>`;
+}
+
+function buildStars(score, size) {
+  let html = `<div style="display:flex;gap:${size > 16 ? 4 : 2}px;align-items:center">`;
+  for (let i = 1; i <= 5; i++) {
+    if (score >= i)            html += starSVG('full', size);
+    else if (score >= i - 0.5) html += starSVG('half', size);
+    else                       html += starSVG('empty', size);
+  }
+  return html + '</div>';
+}
+
+// ── REVIEWS DATA ─────────────────────────────────────────
+const reviews = {
+  silent:    { tag:'Venècia 2025 · Destacat', title:'Silent Friend',     director:'Ildikó Enyedi',      score:4.5, text:`
+    <p>La cineasta hongaresa Ildikó Enyedi, reconeguda pel seu estil poètic i humanista en pel·lícules com <em>Body and Soul</em> (2017) —que li va aconseguir l'Os d'Or a Berlín—, torna presentant a Venècia el seu nou llargmetratge. Aquesta nova obra se sent com una evolució natural de la seva filmografia, on temàtiques com la connexió entre humans i l'intangible s'expandeixen a la ciència i la naturalesa.</p>
+    <p>Protagonitzada pel llegendari Tony Leung, amb una presència magnètica que recorda els seus papers icònics en obres de Wong Kar-wai com <em>In the Mood for Love</em> (2000), la pel·lícula ens explica tres històries entrelligades connectades per un arbre centenari de Ginkgo biloba que funciona com un personatge omnipresent i silenciós.</p>
+    <p>La magnífica cinematografia de Gergely Pálos completa perfectament aquesta sensació d'interconnexió. La direcció d'Enyedi és fantàstica: 145 minuts cohesionats i orquestrats al mil·límetre. Malgrat un lleuger flanqueig de ritme a la meitat, recupera el pols durant l'última hora amb un final que no deixarà indiferent a ningú.</p>` },
+  alpha:     { tag:'Sitges 2025',             title:'Alpha',             director:'Julia Ducournau',    score:3,   text:`
+    <p>Després de la revolucionària <em>Raw</em> (2016) i l'obra mestre <em>Titane</em> (2021), les expectatives eren altíssimes per a <em>Alpha</em>. Tot i que parteix d'idees bones i manté el segell autobiogràfic de la cineasta, la proposta es perd en una barreja de conceptes que no arriben a destacar del tot.</p>
+    <p>La posada en escena colpeja, amb una estètica fosca i desagradable deliberadament "quasi infecciosa". El simbolisme visual és pràcticament nul fins arribar a una seqüència final encertada que tanca amb força.</p>
+    <p>Tot i quedar per sota de la filmografia anterior, l'estil de Ducournau és cru i dur, convertint <em>Alpha</em> en una experiència fascinant que, sols per la seva visceralitat, ja val la pena viure al cinema.</p>` },
+  goodboy:   { tag:'Sitges 2025 · Breu',      title:'Good Boy',          director:'Ben Leonberg',       score:3,   text:`
+    <p><em>Good Boy</em> de Ben Leonberg arriba com una de les pel·lícules més esperades del festival. Compleix principalment gràcies a l'estel·lar actuació de l'Indy: el gos protagonista que es guanya el públic amb una de les millors actuacions animals que s'han vist a la pantalla gran.</p>
+    <p>Tot i ser una bona experiència, el film es queda curt en contingut i no aconsegueix explotar tot el potencial de les seves idees. De totes maneres, una obra entretinguda que val la pena veure pel magnetisme del seu protagonisme.</p>` },
+  romeria:   { tag:'Sitges 2025 · Breu',      title:'Romería',           director:'Carla Simón',        score:4,   text:`
+    <p>Tancament perfecte per a una trilogia dedicada al cinema de la memòria, <em>Romería</em> ratifica el creixement d'una cineasta que trenca amb els seus propis esquemes, aconseguint un realisme poètic devastador impregnat d'una bellesa plena de simbolisme.</p>` },
+  furious:   { tag:'Sitges 2025 · Breu',      title:'The Furious',       director:'Kenji Tanigaki',     score:4,   text:`
+    <p><em>The Furious</em>, l'última pel·lícula de Kenji Tanigaki, ha fet vibrar l'Auditori Melià a Sitges. Una sorpresa brutal del festival amb increïbles seqüències d'acció perfectament coreografiades, equilibrades amb tensió i satisfacció, deixant un film molt entretingut de principi a fi.</p>` },
+  lostlands: { tag:'Sitges 2025 · Breu',      title:'In the Lost Lands', director:'Paul W.S. Anderson', score:1,   text:`
+    <p><em>In the Lost Lands</em> és un autèntic despropòsit de pel·lícula. La majoria d'escenes manquen intencionalitat, els diàlegs no tenen vida i el guió fa que els personatges no semblin creure's el que diuen. Fa la sensació que el director hagués demanat als actors que llegissin les seves línies sense interpretar-les.</p>
+    <p>Un muntatge pèssim provoca que les seqüències se sentin incompletes, transformant la pel·lícula en una experiència tediosa i sense sentit.</p>` }
+};
+
+// Injectar estrelles a les targetes
+document.querySelectorAll('.review-card').forEach(card => {
+  const match = card.getAttribute('onclick').match(/'(\w+)'/);
+  if (!match) return;
+  const r = reviews[match[1]];
+  if (!r) return;
+  const ratingEl = card.querySelector('.card-rating');
+  if (ratingEl) ratingEl.innerHTML = buildStars(r.score, 13);
+});
+
+// Estrelles a la featured
+const featRating = document.querySelector('.rating');
+if (featRating) featRating.innerHTML = buildStars(4.5, 22);
+
+async function openModal(id) {
+  const r = reviews[id]; if (!r) return;
+  document.getElementById('modal-body').innerHTML = `
+    <div class="modal-tag">${r.tag}</div>
+    <h3>${r.title}</h3>
+    <div class="modal-director">${r.director}</div>
+    <div style="margin-bottom:1.5rem">${buildStars(r.score, 20)}</div>
+    <div class="modal-divider"></div>${r.text}`;
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+
+  // Fetch poster on demand si encara no el tenim
+  const mi = document.getElementById('modal-img');
+  mi.classList.remove('loaded'); mi.src = '';
+  if (!r._p && MOVIE_IDS[id]) r._p = await getPosterById(MOVIE_IDS[id]);
+  if (r._p) {
+    mi.onload = () => mi.classList.add('loaded');
+    mi.onerror = () => {};
+    mi.src = r._p;
+    // si la imatge ja estava en cache, onload no dispara
+    if (mi.complete && mi.naturalWidth > 0) mi.classList.add('loaded');
+  }
+}
+
+function closeModal(e) { if (e.target.id === 'modal-overlay') closeModalBtn(); }
+function closeModalBtn() { document.getElementById('modal-overlay').classList.remove('open'); document.body.style.overflow = ''; }
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModalBtn(); });
+
+// ← loadAllPosters DESPRÉS de reviews per poder assignar _p
+loadAllPosters();
+</script>
+</body>
+</html>
