@@ -293,12 +293,12 @@
     .hero-sub { font-size: 0.7rem; margin-top: 1rem; }
     .scroll-hint { display: none; }
 
-    /* Featured */
+    /* Featured — treure sticky */
     #featured { padding: 3rem 1rem; }
     .featured-inner { grid-template-columns: 1fr; gap: 2rem; }
-    .featured-poster { max-width: 160px; }
-    .featured-meta { display: grid; grid-template-columns: 160px 1fr; gap: 1.2rem; align-items: start; }
+    .featured-meta { position: static !important; display: grid; grid-template-columns: 160px 1fr; gap: 1.2rem; align-items: start; }
     .featured-tag { grid-column: 1/-1; }
+    .featured-poster { max-width: 160px; }
     .featured-title { font-size: 1.6rem; }
     .featured-body { border-top: 1px solid var(--border); padding-top: 1.5rem; border-left: none; padding-left: 0; }
 
@@ -308,26 +308,27 @@
     .filter-bar { gap: 0.4rem; }
     .filter-chip { font-size: 0.55rem; padding: 0.3rem 0.7rem; }
 
-    /* Modal */
-    .modal { max-height: 95vh; }
+    /* Modal — fix scroll iOS */
+    .modal-overlay { padding: 0; align-items: flex-end; }
+    .modal { max-height: 92vh; max-width: 100%; border-radius: 0; border-left: none; border-right: none; border-bottom: none; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; }
     .modal-inner { grid-template-columns: 1fr; }
-    .modal-sidebar { position: static; }
+    .modal-sidebar { position: static !important; }
     .modal-poster-wrap { aspect-ratio: 16/7; }
     .modal-poster-wrap img { object-position: center 20%; }
     .modal-right { padding: 1.2rem; }
     .modal h3 { font-size: 1.5rem; }
+    .modal-close { top: 0.6rem; right: 0.6rem; background: rgba(8,8,8,0.95); z-index: 20; }
     .ext-scores { gap: 0.4rem; }
     .ext-score { padding: 0.35rem 0.5rem; }
     .ext-logo { width: 16px; height: 16px; }
     .ext-score-val { font-size: 0.95rem; }
     .share-row { flex-wrap: wrap; }
     .gallery-img { height: 60px; }
-    .modal-close { font-size: 0.6rem; padding: 0.3rem 0.5rem; }
 
-    /* About */
+    /* About — treure sticky */
     #about { padding: 3rem 1rem; }
     .about-inner { grid-template-columns: 1fr; gap: 2rem; }
-    .about-sticky { position: static; }
+    .about-sticky { position: static !important; top: auto; }
     .about-name { font-size: 2rem; }
     .about-stats { grid-template-columns: repeat(4, 1fr); gap: 0.5rem; }
     .stat { padding: 0.6rem 0.3rem; }
@@ -895,7 +896,8 @@ async function openModal(id) {
   document.getElementById('m-gallery').innerHTML    = '';
 
   document.getElementById('modal-overlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
+  // iOS fix: no bloquejem el body, deixem que el modal faci scroll intern
+  if (window.innerWidth > 600) document.body.style.overflow = 'hidden';
   document.getElementById('modal-content').scrollTop = 0;
 
   const tmdbId = MOVIE_IDS[id];
@@ -969,8 +971,8 @@ function loadTrailer(key, container) {
 function closeModal(e) { if (e.target.id === 'modal-overlay') closeModalBtn(); }
 function closeModalBtn() {
   document.getElementById('modal-overlay').classList.remove('open');
-  document.getElementById('m-trailer').innerHTML = ''; // stop video
-  document.body.style.overflow = '';
+  document.getElementById('m-trailer').innerHTML = '';
+  if (window.innerWidth > 600) document.body.style.overflow = '';
 }
 
 // Lightbox
