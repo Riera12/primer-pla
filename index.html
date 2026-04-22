@@ -39,7 +39,7 @@
   body::before {
     content: ''; position: fixed; inset: 0;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-    pointer-events: none; z-index: 1000; opacity: 0.5;
+    pointer-events: none; z-index: 2; opacity: 0.5;
   }
 
 
@@ -49,10 +49,12 @@
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; justify-content: space-between; align-items: center;
     padding: 1.5rem 4rem;
-    background: linear-gradient(to bottom, rgba(8,8,8,0.98), transparent);
-    border-bottom: 1px solid transparent; transition: border-color 0.3s, background 0.3s;
+    background: rgba(8,8,8,0.97);
+    border-bottom: 1px solid var(--border);
+    transition: border-color 0.3s;
   }
-  nav.scrolled { background: rgba(8,8,8,0.97); border-bottom-color: var(--border); }
+  nav.scrolled { background: rgba(8,8,8,0.99); }
+  html { scroll-behavior: smooth; scroll-padding-top: 70px; }
   .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 300; letter-spacing: 0.15em; color: var(--white); text-decoration: none; text-transform: uppercase; }
   .nav-logo span { color: var(--accent); }
   .nav-links { display: flex; gap: 2.5rem; list-style: none; }
@@ -60,7 +62,7 @@
   .nav-links a:hover { color: var(--accent); }
 
   /* HERO */
-  #hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 4rem 5rem; position: relative; overflow: hidden; }
+  #hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 70px 4rem 5rem; position: relative; overflow: hidden; }
   .hero-bg { position: absolute; inset: 0; background: radial-gradient(ellipse at 70% 50%, rgba(200,169,110,0.05) 0%, transparent 60%), radial-gradient(ellipse at 20% 80%, rgba(139,94,60,0.08) 0%, transparent 50%); }
   .hero-poster { position: absolute; right: 0; top: 0; height: 100%; width: 45%; overflow: hidden; }
   .hero-poster img { width: 100%; height: 100%; object-fit: cover; object-position: center top; opacity: 0; transition: opacity 1s ease; filter: grayscale(40%) contrast(1.05); }
@@ -263,20 +265,87 @@
   .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
   .fade-in.visible { opacity: 1; transform: translateY(0); }
 
+  /* ── TABLET (max 960px) ─────────────────────────────── */
   @media (max-width: 960px) {
-    nav, section, #critiques { padding-left: 2rem; padding-right: 2rem; }
-    #hero { padding: 0 2rem 4rem; }
-    .featured-inner, .about-inner { grid-template-columns: 1fr; gap: 3rem; }
-    .featured-body { border-left: none; padding-left: 0; border-top: 1px solid var(--border); padding-top: 3rem; }
+    nav { padding: 1rem 1.5rem; }
+    section, #critiques { padding-left: 1.5rem; padding-right: 1.5rem; }
+    #hero { padding: 0 1.5rem 4rem; }
+    .featured-inner, .about-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+    .featured-body { border-left: none; padding-left: 0; border-top: 1px solid var(--border); padding-top: 2.5rem; }
     .reviews-grid { grid-template-columns: 1fr 1fr; }
-    .modal-inner { grid-template-columns: 120px 1fr; }
-    footer { flex-direction: column; gap: 1rem; text-align: center; }
+    .modal-inner { grid-template-columns: 130px 1fr; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 1.5rem; }
   }
+
+  /* ── MÒBIL (max 600px) ──────────────────────────────── */
   @media (max-width: 600px) {
-    .reviews-grid { grid-template-columns: 1fr; }
+    /* Nav */
+    nav { padding: 0.9rem 1rem; flex-wrap: nowrap; gap: 0.5rem; }
+    .nav-logo { font-size: 1.1rem; }
+    .nav-links { display: none; }
+    .nav-search input { width: 100px; font-size: 0.65rem; }
+    .search-dropdown { width: calc(100vw - 2rem); right: -1rem; }
+
+    /* Hero — compensa nav fix */
+    #hero { padding: 70px 1rem 3rem; min-height: 85vh; }
+    .hero-poster { width: 100%; opacity: 0.15; }
+    h1 { font-size: clamp(2.8rem, 12vw, 4.5rem); }
+    .hero-sub { font-size: 0.7rem; margin-top: 1rem; }
+    .scroll-hint { display: none; }
+
+    /* Featured */
+    #featured { padding: 3rem 1rem; }
+    .featured-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .featured-poster { max-width: 160px; }
+    .featured-meta { display: grid; grid-template-columns: 160px 1fr; gap: 1.2rem; align-items: start; }
+    .featured-tag { grid-column: 1/-1; }
+    .featured-title { font-size: 1.6rem; }
+    .featured-body { border-top: 1px solid var(--border); padding-top: 1.5rem; border-left: none; padding-left: 0; }
+
+    /* Grid */
+    #critiques { padding: 2.5rem 1rem; }
+    .reviews-grid { grid-template-columns: 1fr; gap: 1px; }
+    .filter-bar { gap: 0.4rem; }
+    .filter-chip { font-size: 0.55rem; padding: 0.3rem 0.7rem; }
+
+    /* Modal */
+    .modal { max-height: 95vh; }
     .modal-inner { grid-template-columns: 1fr; }
     .modal-sidebar { position: static; }
-    .modal-poster-wrap { aspect-ratio: 16/6; }
+    .modal-poster-wrap { aspect-ratio: 16/7; }
+    .modal-poster-wrap img { object-position: center 20%; }
+    .modal-right { padding: 1.2rem; }
+    .modal h3 { font-size: 1.5rem; }
+    .ext-scores { gap: 0.4rem; }
+    .ext-score { padding: 0.35rem 0.5rem; }
+    .ext-logo { width: 16px; height: 16px; }
+    .ext-score-val { font-size: 0.95rem; }
+    .share-row { flex-wrap: wrap; }
+    .gallery-img { height: 60px; }
+    .modal-close { font-size: 0.6rem; padding: 0.3rem 0.5rem; }
+
+    /* About */
+    #about { padding: 3rem 1rem; }
+    .about-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .about-sticky { position: static; }
+    .about-name { font-size: 2rem; }
+    .about-stats { grid-template-columns: repeat(4, 1fr); gap: 0.5rem; }
+    .stat { padding: 0.6rem 0.3rem; }
+    .stat-num { font-size: 1.3rem; }
+
+    /* Footer */
+    footer { padding: 2rem 1rem; gap: 0.8rem; }
+
+    /* Lightbox */
+    .lightbox img { max-width: 98vw; max-height: 80vh; }
+  }
+
+  /* ── MÒBIL PETIT (max 380px) ────────────────────────── */
+  @media (max-width: 380px) {
+    h1 { font-size: 2.5rem; }
+    .featured-meta { grid-template-columns: 1fr; }
+    .featured-poster { max-width: 100%; }
+    .about-stats { grid-template-columns: 1fr 1fr; }
   }
 </style>
 </head>
@@ -539,13 +608,18 @@ const MOVIE_IDS = {
 function setImg(el, src) {
   if (!src || !el) return;
   el.onload = () => el.classList.add('loaded');
+  el.onerror = () => {};
   el.src = src;
   if (el.complete && el.naturalWidth > 0) el.classList.add('loaded');
 }
 
+// Fetch amb timeout per mòbil
 async function tmdb(path) {
   try {
-    const r = await fetch(`${TMDB_BASE}${path}?api_key=${KEY}`);
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 8000);
+    const r = await fetch(`${TMDB_BASE}${path}?api_key=${KEY}`, { signal: controller.signal });
+    clearTimeout(timeout);
     return await r.json();
   } catch { return null; }
 }
@@ -553,20 +627,23 @@ async function tmdb(path) {
 async function loadAllPosters() {
   const keys  = ['silent','alpha','goodboy','romeria','furious','lostlands'];
   const cards = document.querySelectorAll('.card-poster img');
-  for (let i = 0; i < keys.length; i++) {
-    const key = keys[i]; const id = MOVIE_IDS[key]; if (!id) continue;
-    const d = await tmdb(`/movie/${id}`);
-    if (d?.poster_path) {
-      const src = IMG_W + d.poster_path;
-      setImg(cards[i], src);
-      reviews[key]._p = src;
-      // Si silent friend, actualitza també hero i featured
-      if (key === 'silent') {
-        setImg(document.getElementById('hero-img'), src);
-        setImg(document.getElementById('feat-img'), src);
-      }
+
+  // Carrega TOTS en paral·lel (molt més ràpid en mòbil)
+  const results = await Promise.all(
+    keys.map(key => MOVIE_IDS[key] ? tmdb(`/movie/${MOVIE_IDS[key]}`) : null)
+  );
+
+  results.forEach((d, i) => {
+    if (!d?.poster_path) return;
+    const key = keys[i];
+    const src = IMG_W + d.poster_path;
+    setImg(cards[i], src);
+    reviews[key]._p = src;
+    if (key === 'silent') {
+      setImg(document.getElementById('hero-img'), src);
+      setImg(document.getElementById('feat-img'), src);
     }
-  }
+  });
 }
 
 // ── SEARCH DROPDOWN ───────────────────────────────────────
@@ -834,15 +911,19 @@ async function openModal(id) {
 
   if (!tmdbId) return;
 
-  // Trailer: thumbnail clicable → obre YouTube
-  const vData = await tmdb(`/movie/${tmdbId}/videos`);
+  // Tràiler + backdrops + poster en paral·lel
+  const [vData, imgData] = await Promise.all([
+    tmdb(`/movie/${tmdbId}/videos`),
+    tmdb(`/movie/${tmdbId}/images`)
+  ]);
+
+  // Tràiler
   const trailerEl = document.getElementById('m-trailer');
   if (vData?.results?.length) {
     const vid = vData.results.find(v => v.site === 'YouTube' && v.type === 'Trailer')
              || vData.results.find(v => v.site === 'YouTube');
     if (vid) {
       const thumb = `https://img.youtube.com/vi/${vid.key}/maxresdefault.jpg`;
-      const ytUrl = `https://www.youtube.com/watch?v=${vid.key}`;
       trailerEl.innerHTML = `
         <div class="trailer-thumb" onclick="loadTrailer('${vid.key}', this.parentElement)">
           <img src="${thumb}" alt="Tràiler" onerror="this.src='https://img.youtube.com/vi/${vid.key}/hqdefault.jpg'">
@@ -861,7 +942,6 @@ async function openModal(id) {
   }
 
   // Backdrops
-  const imgData = await tmdb(`/movie/${tmdbId}/images`);
   const gallery = document.getElementById('m-gallery');
   const galSection = document.getElementById('m-gallery-section');
   const galDivider = document.getElementById('m-divider-gallery');
