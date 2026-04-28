@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Primer Pla — Crítica de Cinema en Català</title>
-<link rel="canonical" href="https://primerpla.es">
 
 <!-- SEO -->
 <meta name="description" content="Primer Pla és una publicació independent de crítica cinematogràfica en català, amb cobertura de festivals internacionals com Venècia, Sitges i Canes.">
@@ -132,20 +131,39 @@
   .card-rating { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--accent); }
   .card-type { font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-muted); }
 
-  /* ABOUT */
-  #about { background: var(--bg2); border-top: 1px solid var(--border); }
-  .about-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.8fr; gap: 6rem; align-items: start; }
-  .about-sticky { position: sticky; top: 8rem; }
-  .about-name { font-family: 'Cormorant Garamond', serif; font-size: 3rem; font-weight: 300; color: var(--white); line-height: 1; margin-bottom: 0.5rem; }
-  .about-role { font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 2rem; }
-  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
-  .stat { border: 1px solid var(--border); padding: 1rem; text-align: center; }
-  .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2rem; color: var(--accent); display: block; }
-  .stat-label { font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); display: block; margin-top: 0.3rem; }
-  .about-body p { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; line-height: 1.9; color: var(--text); margin-bottom: 1.5rem; }
-  .about-body p:first-child::first-letter { font-size: 3.5rem; float: left; line-height: 0.8; margin-right: 0.1em; color: var(--accent); font-weight: 300; }
-  .manifesto { border-left: 2px solid var(--accent); padding-left: 2rem; margin: 2.5rem 0; }
-  .manifesto p { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; font-style: italic; line-height: 1.6; color: var(--white) !important; }
+  /* ABOUT — pàgina personal */
+  #about { background: var(--bg2); border-top: 1px solid var(--border); padding: 7rem 4rem; }
+
+  /* Hero */
+  .about-hero { display: grid; grid-template-columns: 280px 1fr; gap: 5rem; align-items: center; margin-bottom: 6rem; padding-bottom: 6rem; border-bottom: 1px solid var(--border); }
+  .about-photo-wrap { position: relative; }
+  .about-photo { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: center top; display: block; filter: grayscale(15%); border: 1px solid var(--border); }
+  .about-photo-ph { width: 100%; aspect-ratio: 3/4; background: var(--bg3); display: none; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 3rem; color: var(--border); border: 1px solid var(--border); }
+  .about-hero-info { display: flex; flex-direction: column; gap: 1rem; }
+  .about-role-tag { font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-muted); }
+  .about-tagline { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-style: italic; color: var(--text-muted); line-height: 1.5; border-left: 2px solid var(--accent); padding-left: 1.2rem; margin: 0.5rem 0; }
+  .about-social { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 0.5rem; }
+  .social-link { display: flex; align-items: center; gap: 0.5rem; font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; border: 1px solid var(--border); padding: 0.4rem 0.9rem; transition: all 0.2s; }
+  .social-link svg { width: 13px; height: 13px; flex-shrink: 0; }
+  .social-link:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* Grid bio + trajectòria */
+  .about-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 6rem; align-items: start; }
+  .about-bio-col .about-body p { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; line-height: 1.9; color: var(--text); margin-bottom: 1.5rem; text-align: justify; hyphens: auto; }
+  .about-bio-col .about-body p:first-child::first-letter { font-size: 3.5rem; float: left; line-height: 0.8; margin-right: 0.1em; color: var(--accent); font-weight: 300; }
+
+  /* Timeline */
+  .about-timeline { display: flex; flex-direction: column; gap: 0; margin-bottom: 2.5rem; }
+  .timeline-item { display: grid; grid-template-columns: 56px 1fr; gap: 1.2rem; padding: 1.2rem 0; border-bottom: 1px solid var(--border); }
+  .timeline-item:first-child { border-top: 1px solid var(--border); }
+  .timeline-year { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--accent); font-weight: 300; padding-top: 0.1rem; }
+  .timeline-title { font-size: 0.75rem; letter-spacing: 0.1em; color: var(--white); margin-bottom: 0.3rem; text-transform: uppercase; }
+  .timeline-desc { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; line-height: 1.6; color: var(--text-muted); }
+
+  /* Contact box */
+  .about-contact-box { border: 1px solid var(--border); padding: 1.5rem; margin-top: 0.5rem; }
+  .contact-email { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: var(--accent); text-decoration: none; letter-spacing: 0.05em; display: block; transition: opacity 0.2s; }
+  .contact-email:hover { opacity: 0.7; }
 
   /* FOOTER */
   footer { border-top: 1px solid var(--border); padding: 3rem 4rem; display: flex; justify-content: space-between; align-items: center; }
@@ -250,7 +268,9 @@
   .no-results { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-style: italic; color: var(--text-muted); padding: 2rem 0; grid-column: 1/-1; }
 
   /* SHARE BUTTON */
-  .share-btn { background: none; border: 1px solid var(--border); color: var(--text-muted); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; font-family: 'Josefin Sans', sans-serif; padding: 0.35rem 0.8rem; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 0.4rem; }
+  .cinema-btn { display: flex; align-items: center; gap: 0.5rem; background: none; border: 1px solid var(--border); color: var(--text-muted); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; font-family: 'Josefin Sans', sans-serif; padding: 0.4rem 0.9rem; cursor: pointer; transition: all 0.2s; text-decoration: none; }
+  .cinema-btn:hover { border-color: var(--accent); color: var(--accent); }
+  .cinema-btn svg { width: 13px; height: 13px; flex-shrink: 0; } color: var(--text-muted); font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; font-family: 'Josefin Sans', sans-serif; padding: 0.35rem 0.8rem; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 0.4rem; }
   .share-btn:hover { border-color: var(--accent); color: var(--accent); }
   .share-btn svg { width: 13px; height: 13px; }
   .share-row { display: flex; gap: 0.5rem; margin-top: 0.5rem; }
@@ -274,7 +294,74 @@
   .fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
   .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-  /* ── TABLET (max 960px) ─────────────────────────────── */
+  /* ── ESTRENES ────────────────────────────────────────── */
+  #estrenes { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 5rem 4rem; }
+  .estrenes-inner { max-width: 1200px; margin: 0 auto; }
+  .estrenes-tabs { display: flex; gap: 0; margin-bottom: 2.5rem; border-bottom: 1px solid var(--border); }
+  .estrenes-tab { font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-muted); background: none; border: none; border-bottom: 2px solid transparent; padding: 0.7rem 1.5rem 0.7rem 0; cursor: pointer; font-family: 'Josefin Sans', sans-serif; transition: color 0.2s, border-color 0.2s; margin-bottom: -1px; }
+  .estrenes-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .estrenes-scroll { display: flex; gap: 1rem; overflow-x: auto; padding-bottom: 0.8rem; scrollbar-width: thin; scrollbar-color: var(--border) transparent; }
+  .estrenes-scroll::-webkit-scrollbar { height: 3px; }
+  .estrenes-scroll::-webkit-scrollbar-thumb { background: var(--border); }
+  .estrena-card { flex-shrink: 0; width: 140px; cursor: pointer; position: relative; transition: transform 0.2s; }
+  .estrena-card:hover { transform: translateY(-4px); }
+  .estrena-poster { width: 140px; height: 210px; object-fit: cover; display: block; background: var(--bg3); border: 1px solid var(--border); opacity: 0; transition: opacity 0.4s; }
+  .estrena-poster.loaded { opacity: 1; }
+  .estrena-poster-ph { width: 140px; height: 210px; background: repeating-linear-gradient(45deg, var(--bg3) 0, var(--bg3) 10px, var(--bg) 10px, var(--bg) 20px); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; }
+  .estrena-info { padding: 0.6rem 0 0; }
+  .estrena-title { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; color: var(--white); line-height: 1.2; margin-bottom: 0.2rem; }
+  .estrena-date { font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); }
+  .estrena-reviewed { position: absolute; top: 0.5rem; left: 0.5rem; background: var(--accent); color: var(--bg); font-size: 0.5rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.2rem 0.5rem; font-family: 'Josefin Sans', sans-serif; }
+  .estrenes-loading { font-size: 0.65rem; letter-spacing: 0.2em; color: var(--text-muted); text-transform: uppercase; padding: 2rem 0; }
+  /* Modal d'estrena (sense ressenya pròpia) */
+  .estrena-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.93); z-index: 200; display: flex; align-items: center; justify-content: center; padding: 1.5rem; opacity: 0; pointer-events: none; transition: opacity 0.3s; }
+  .estrena-modal.open { opacity: 1; pointer-events: all; }
+  .estrena-modal-box { background: var(--bg2); border: 1px solid var(--border); max-width: 560px; width: 100%; display: grid; grid-template-columns: 150px 1fr; position: relative; transform: translateY(20px); transition: transform 0.3s; max-height: 90vh; overflow: hidden; }
+  .estrena-modal.open .estrena-modal-box { transform: translateY(0); }
+  .estrena-modal-poster { position: relative; background: var(--bg3); overflow: hidden; min-height: 220px; }
+  .estrena-modal-poster img { width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.4s; }
+  .estrena-modal-poster img.loaded { opacity: 1; }
+  .estrena-modal-body { padding: 1.8rem; display: flex; flex-direction: column; gap: 0.5rem; overflow-y: auto; }
+  .estrena-modal-tag { font-size: 0.55rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); }
+  .estrena-modal-title { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; color: var(--white); line-height: 1.1; }
+  .estrena-modal-director { font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); }
+  .estrena-modal-meta { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+  .estrena-modal-badge { font-size: 0.52rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.2rem 0.5rem; border: 1px solid var(--border); color: var(--text-muted); }
+  .estrena-modal-overview { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; line-height: 1.7; color: var(--text-muted); font-style: italic; }
+  .estrena-modal-actions { display: flex; gap: 0.5rem; flex-wrap: wrap; padding-top: 1rem; border-top: 1px solid var(--border); margin-top: auto; }
+  .estrena-modal-close { position: absolute; top: 0.6rem; right: 0.6rem; background: rgba(8,8,8,0.85); border: 1px solid var(--border); color: var(--text-muted); font-size: 0.6rem; cursor: pointer; font-family: 'Josefin Sans', sans-serif; letter-spacing: 0.1em; padding: 0.3rem 0.6rem; z-index: 5; transition: all 0.2s; }
+  .estrena-modal-close:hover { color: var(--accent); border-color: var(--accent); }
+
+  /* ── CATÀLEG ─────────────────────────────────────────── */
+  .cataleg-inner { max-width: 1200px; margin: 0 auto; }
+  .cataleg-filters { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2.5rem; align-items: flex-end; }
+  .cataleg-filter-group { display: flex; flex-direction: column; gap: 0.5rem; }
+  .cataleg-filter-label { font-size: 0.55rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); }
+  .cataleg-select { background: var(--bg2); border: 1px solid var(--border); color: var(--text); font-family: 'Josefin Sans', sans-serif; font-size: 0.68rem; letter-spacing: 0.1em; padding: 0.45rem 2rem 0.45rem 0.8rem; outline: none; cursor: pointer; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%237a7268' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 0.6rem center; transition: border-color 0.2s; }
+  .cataleg-select:focus { border-color: var(--accent); }
+  .cataleg-reset { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); background: none; border: 1px solid var(--border); padding: 0.45rem 0.9rem; cursor: pointer; font-family: 'Josefin Sans', sans-serif; transition: all 0.2s; align-self: flex-end; }
+  .cataleg-reset:hover { color: var(--accent); border-color: var(--accent); }
+  .cataleg-count { font-size: 0.6rem; letter-spacing: 0.2em; color: var(--text-muted); align-self: flex-end; margin-left: auto; }
+  .cataleg-table { width: 100%; border-collapse: collapse; }
+  .cataleg-table th { font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-muted); padding: 0.6rem 1rem; text-align: left; border-bottom: 1px solid var(--border); cursor: pointer; user-select: none; white-space: nowrap; transition: color 0.2s; }
+  .cataleg-table th:hover { color: var(--accent); }
+  .cataleg-table th.sorted { color: var(--accent); }
+  .cataleg-table th .sort-arrow { margin-left: 0.3rem; opacity: 0.5; }
+  .cataleg-table th.sorted .sort-arrow { opacity: 1; }
+  .cataleg-row { border-bottom: 1px solid var(--border); cursor: pointer; transition: background 0.15s; }
+  .cataleg-row:hover { background: var(--bg3); }
+  .cataleg-row td { padding: 0.9rem 1rem; vertical-align: middle; }
+  .cat-poster-cell { width: 48px; }
+  .cat-poster { width: 36px; height: 54px; object-fit: cover; display: block; opacity: 0; transition: opacity 0.4s; flex-shrink: 0; }
+  .cat-poster.loaded { opacity: 1; }
+  .cat-title { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--white); font-weight: 300; }
+  .cat-director { font-size: 0.62rem; letter-spacing: 0.1em; color: var(--text-muted); margin-top: 0.15rem; text-transform: uppercase; }
+  .cat-badge { display: inline-block; font-size: 0.52rem; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.2rem 0.5rem; border: 1px solid var(--border); color: var(--text-muted); }
+  .cat-genre { font-size: 0.62rem; letter-spacing: 0.1em; color: var(--text-muted); }
+  .cat-country { font-size: 0.62rem; letter-spacing: 0.1em; color: var(--text-muted); }
+  .cat-year { font-size: 0.8rem; color: var(--text-muted); font-family: 'Cormorant Garamond', serif; }
+  .cat-stars { display: flex; gap: 2px; align-items: center; }
+  .cataleg-empty { text-align: center; padding: 3rem; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; color: var(--text-muted); }
   @media (max-width: 960px) {
     nav { padding: 1rem 1.5rem; }
     section, #critiques { padding-left: 1.5rem; padding-right: 1.5rem; }
@@ -334,14 +421,26 @@
     .share-row { flex-wrap: wrap; }
     .gallery-img { height: 60px; }
 
-    /* About — treure sticky */
+
+    /* About */
     #about { padding: 3rem 1rem; }
-    .about-inner { grid-template-columns: 1fr; gap: 2rem; }
-    .about-sticky { position: static !important; top: auto; }
-    .about-name { font-size: 2rem; }
-    .about-stats { grid-template-columns: repeat(4, 1fr); gap: 0.5rem; }
-    .stat { padding: 0.6rem 0.3rem; }
-    .stat-num { font-size: 1.3rem; }
+    .about-hero { grid-template-columns: 1fr; gap: 2rem; margin-bottom: 3rem; padding-bottom: 3rem; }
+    .about-photo, .about-photo-ph { max-width: 180px; }
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+
+    /* Estrenes */
+    #estrenes { padding: 2.5rem 1rem; }
+    .estrena-card { width: 110px; }
+    .estrena-poster, .estrena-poster-ph { width: 110px; height: 165px; }
+
+    /* Catàleg */
+    #cataleg { padding: 2.5rem 1rem; }
+    .cataleg-filters { gap: 0.8rem; }
+    .cataleg-select { font-size: 0.62rem; }
+    .cataleg-table th:nth-child(4),
+    .cataleg-table td:nth-child(4),
+    .cataleg-table th:nth-child(5),
+    .cataleg-table td:nth-child(5) { display: none; }
 
     /* Footer */
     footer { padding: 2rem 1rem; gap: 0.8rem; }
@@ -374,6 +473,8 @@
     </div>
     <ul class="nav-links">
       <li><a href="#critiques">Crítiques</a></li>
+      <li><a href="#estrenes">Estrenes</a></li>
+      <li><a href="#cataleg">Catàleg</a></li>
       <li><a href="#about">Sobre</a></li>
     </ul>
   </div>
@@ -382,7 +483,7 @@
 <!-- HERO -->
 <section id="hero">
   <div class="hero-bg"></div>
-  <div class="hero-poster"><img id="hero-img" src="" alt="Silent Friend"></div>
+  <div class="hero-poster"><img id="hero-img" src="" alt="Sound of Falling"></div>
   <div class="hero-eyebrow">Crítica de cinema en català</div>
   <h1>El cinema<br>vist de <em>prop.</em></h1>
   <p class="hero-sub">Cobertura de festivals internacionals — Venècia, Sitges, Canes — des d'una mirada catalana.</p>
@@ -393,21 +494,36 @@
 <section id="featured">
   <div class="featured-inner">
     <div class="featured-meta fade-in">
-      <div class="featured-tag">Destacat · Venècia 2025</div>
+      <div class="featured-tag">Destacat · Cannes 2025</div>
       <div class="featured-poster">
         <div class="poster-ph">Pòster</div>
-        <img id="feat-img" src="" alt="Silent Friend">
+        <img id="feat-img" src="" alt="Sound of Falling">
       </div>
-      <div class="featured-title">Silent Friend</div>
-      <div class="featured-director">Ildikó Enyedi</div>
-      <div class="rating"><span class="rating-num">4.5</span><span class="rating-denom">/ 5</span></div>
-      <p class="featured-excerpt">"Una obra que transcendeix la pantalla i connecta el quotidià amb l'etern."</p>
-      <a class="read-more" onclick="openModal('silent')">Llegir la crítica completa</a>
+      <div class="featured-title">Sound of Falling</div>
+      <div class="featured-director">Mascha Schilinski</div>
+      <div class="rating"><span class="rating-num">4</span><span class="rating-denom">/ 5</span></div>
+      <p class="featured-excerpt">"Una experiència que costa d'oblidar. Es continua pensant dies després, tornant-hi en imatges o en sons."</p>
+      <a class="read-more" onclick="openModal('soundfalling')">Llegir la crítica completa</a>
     </div>
     <div class="featured-body fade-in">
-      <p>La cineasta hongaresa Ildikó Enyedi torna presentant a Venècia <em>Silent Friend</em>, una evolució natural de la seva filmografia on temàtiques com la connexió entre humans i l'intangible s'expandeixen cap a la ciència i la naturalesa, sent un homenatge sincer a la investigació impulsada per la curiositat pura.</p>
-      <p>Protagonitzada pel llegendari Tony Leung —amb una presència magnètica que recorda els seus papers en <em>In the Mood for Love</em>— la pel·lícula ens explica tres histories entrelligades connectades per un arbre centenari de Ginkgo biloba que funciona com un personatge omnipresent i silenciós.</p>
-      <a class="read-more" onclick="openModal('silent')">Continuar llegint →</a>
+      <p>La nova proposta de Mascha Schilinski, <em>Sound of Falling</em>, arriba als cinemes gairebé un any després de la seva estrena al Festival de Cannes on se li va atorgar el Gran Premi del Jurat ex aequo amb <em>Sirat</em> d'Oliver Laxe. Schilinski, que s'havia estrenat amb <em>Dark Blue Girl</em> al 2017, sembla haver trobat un estil d'una maduresa sorprenent i amb una bellesa molt profunda i premeditada.</p>
+      <p>El film es desenvolupa al voltant d'una granja al nord d'Alemanya i de quatre noies que viuen en èpoques diferents del segle XX. Totes passen la seva joventut en la mateixa masia al llarg d'un segle, i tot i estar separades pels anys, hi apareixen similituds entre les seves vides. La granja no és només un escenari, sinó que és un personatge més.</p>
+      <a class="read-more" onclick="openModal('soundfalling')">Continuar llegint →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ESTRENES -->
+<section id="estrenes">
+  <div class="estrenes-inner">
+    <div class="section-label">Cartellera</div>
+    <h2>Estrenes</h2>
+    <div class="estrenes-tabs">
+      <button class="estrenes-tab active" onclick="switchEstrenesTab('now', this)">Ara al cinema</button>
+      <button class="estrenes-tab" onclick="switchEstrenesTab('upcoming', this)">Pròximament</button>
+    </div>
+    <div class="estrenes-scroll" id="estrenes-scroll">
+      <div class="estrenes-loading">Carregant estrenes…</div>
     </div>
   </div>
 </section>
@@ -418,13 +534,29 @@
   <h2>Totes les crítiques</h2>
   <div class="filter-bar">
     <button class="filter-chip active" onclick="setFilter('all', this)">Totes</button>
+    <button class="filter-chip" onclick="setFilter('Cannes 2025', this)">Cannes 2025</button>
     <button class="filter-chip" onclick="setFilter('Venècia 2025', this)">Venècia 2025</button>
     <button class="filter-chip" onclick="setFilter('Sitges 2025', this)">Sitges 2025</button>
+    <button class="filter-chip" onclick="setFilter('Cinema', this)">Cinema</button>
     <button class="filter-chip" onclick="setFilter('Crítica', this)">Crítiques</button>
     <button class="filter-chip" onclick="setFilter('Breu', this)">Breus</button>
   </div>
   <div class="reviews-grid" id="reviews-grid">
     <p class="no-results" id="no-results" style="display:none">No s'han trobat resultats.</p>
+
+    <div class="review-card fade-in" onclick="openModal('soundfalling')" data-festival="Cannes 2025" data-type="Crítica">
+      <div class="card-poster">
+        <div class="card-poster-ph">Sound of Falling</div>
+        <img src="" alt="Sound of Falling">
+      </div>
+      <div class="card-body">
+        <div class="card-festival">Cannes 2025</div>
+        <div class="card-title">Sound of Falling</div>
+        <div class="card-director">Mascha Schilinski</div>
+        <p class="card-excerpt">"Una experiència que costa d'oblidar. Es continua pensant dies després."</p>
+        <div class="card-footer"><span class="card-rating">4 / 5</span><span class="card-type">Crítica</span></div>
+      </div>
+    </div>
 
     <div class="review-card fade-in" onclick="openModal('silent')" data-festival="Venècia 2025" data-type="Crítica">
       <div class="card-poster">
@@ -468,13 +600,13 @@
       </div>
     </div>
 
-    <div class="review-card fade-in" onclick="openModal('romeria')" data-festival="Sitges 2025" data-type="Breu">
+    <div class="review-card fade-in" onclick="openModal('romeria')" data-festival="Cannes 2025" data-type="Breu">
       <div class="card-poster">
         <div class="card-poster-ph">Romería</div>
         <img data-q="Romeria Carla Simon 2025" src="" alt="Romería">
       </div>
       <div class="card-body">
-        <div class="card-festival">Sitges 2025</div>
+        <div class="card-festival">Cannes 2025</div>
         <div class="card-title">Romería</div>
         <div class="card-director">Carla Simón</div>
         <p class="card-excerpt">"Un realisme poètic devastador impregnat d'una bellesa plena de simbolisme."</p>
@@ -496,13 +628,13 @@
       </div>
     </div>
 
-    <div class="review-card fade-in" onclick="openModal('lostlands')" data-festival="Sitges 2025" data-type="Breu">
+    <div class="review-card fade-in" onclick="openModal('lostlands')" data-festival="Cinema" data-type="Breu">
       <div class="card-poster">
         <div class="card-poster-ph">In the Lost Lands</div>
         <img data-q="In the Lost Lands 2025" src="" alt="In the Lost Lands">
       </div>
       <div class="card-body">
-        <div class="card-festival">Sitges 2025</div>
+        <div class="card-festival">Cinema</div>
         <div class="card-title">In the Lost Lands</div>
         <div class="card-director">Paul W.S. Anderson</div>
         <p class="card-excerpt">"Un autèntic despropòsit. Diàlegs sense vida i personatges sense carisma."</p>
@@ -515,24 +647,166 @@
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="about-inner">
-    <div class="about-sticky fade-in">
-      <div class="section-label">Qui som</div>
-      <div class="about-name">Primer<br>Pla</div>
-      <div class="about-role">Crítica cinematogràfica en català</div>
-      <div class="about-stats">
-        <div class="stat"><span class="stat-num">5</span><span class="stat-label">Crítiques</span></div>
-        <div class="stat"><span class="stat-num">3</span><span class="stat-label">Festivals</span></div>
-        <div class="stat"><span class="stat-num">CA</span><span class="stat-label">Llengua</span></div>
-        <div class="stat"><span class="stat-num">2025</span><span class="stat-label">Fundació</span></div>
+  <div style="max-width:1200px;margin:0 auto">
+
+    <!-- Capçalera personal -->
+    <div class="about-hero fade-in">
+      <div class="about-photo-wrap">
+        <img src="pau.jpg" alt="Pau Riera Garcia" class="about-photo" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="about-photo-ph">PR</div>
+      </div>
+      <div class="about-hero-info">
+        <div class="section-label">Qui hi ha al darrere</div>
+        <h2 style="margin-bottom:0.3rem">Pau Riera<br><em style="font-style:italic;color:var(--accent)">Garcia</em></h2>
+        <div class="about-role-tag">Crític de cinema · Fundador de Primer Pla</div>
+        <p class="about-tagline">"El cinema és l'únic lloc on pots viure mil vides en una sola."</p>
+        <div class="about-social">
+          <a href="https://x.com/PauRiera1210" target="_blank" class="social-link">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.259 5.622L18.244 2.25zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            @PauRiera1210
+          </a>
+          <a href="https://letterboxd.com/Riera12" target="_blank" class="social-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+            Letterboxd
+          </a>
+          <a href="mailto:p.riera2004@gmail.com" class="social-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+            p.riera2004@gmail.com
+          </a>
+        </div>
       </div>
     </div>
-    <div class="about-body fade-in">
-      <p>Primer Pla neix de la necessitat de construir una veu crítica de cinema en català que cobreixi els grans festivals internacionals — Venècia, Sitges, Canes — i els posi a l'abast d'un públic que, massa sovint, no troba referents propis.</p>
-      <div class="manifesto"><p>"El cinema és universal, però la mirada és sempre situada. La nostra mirada parla en català."</p></div>
-      <p>Les crítiques que trobareu aquí no busquen la neutralitat: busquen la precisió. Parlem d'obres d'autor, de cinema de festival, de pel·lícules que desafien el que esperem de la pantalla. Ho fem amb rigor, però també amb passió, perquè la crítica és, ella mateixa, un acte creatiu.</p>
-      <p>Primer Pla és un projecte independent, amb vocació d'expandir-se i de ser present als principals certàmens cinematogràfics europeus a partir de 2026.</p>
+
+    <!-- Bio + trajectòria -->
+    <div class="about-grid fade-in">
+      <div class="about-bio-col">
+        <div class="section-label">Sobre mi</div>
+        <div class="about-body">
+          <p>Soc en Pau, de Figueres, i porto tota la vida amb el cinema al cap. No com a afició passiva, sinó com una manera d'entendre el món: cada pel·lícula és una conversa, una pregunta, una porta a un lloc que d'altra manera no podries visitar mai.</p>
+          <div class="manifesto"><p>"Crec que el cinema ha canviat, i que es pot — i s'ha de — apropar al públic. Primer Pla neix d'aquesta convicció."</p></div>
+          <p>Estudio Biotecnologia a la Universitat de Girona, un grau que m'ha ensenyat a mirar les coses amb rigor i a no conformar-me amb les respostes fàcils. Potser per això la crítica de cinema m'atrau tant: perquè exigeix exactament el mateix.</p>
+          <p>He cobert festivals com el de Venècia i Sitges, i ara preparo la cobertura de la Quinzaine des Cinéastes de Canes 2026 — un dels espais més apassionants del cinema d'autor europeu. Primer Pla és el vehicle per portar tot això a un públic catalanoparlant que massa sovint no troba la seva veu en el panorama crític internacional.</p>
+        </div>
+      </div>
+
+      <div class="about-traj-col">
+        <div class="section-label">Trajectòria</div>
+        <div class="about-timeline">
+          <div class="timeline-item">
+            <div class="timeline-year">2026</div>
+            <div class="timeline-content">
+              <div class="timeline-title">Quinzaine des Cinéastes — Canes</div>
+              <div class="timeline-desc">Cobertura acreditada del festival. Primera presència internacional de Primer Pla.</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2025</div>
+            <div class="timeline-content">
+              <div class="timeline-title">Fundació de Primer Pla</div>
+              <div class="timeline-desc">Llançament de la plataforma de crítica cinematogràfica en català. Cobertura de Venècia i Sitges.</div>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-year">2023</div>
+            <div class="timeline-content">
+              <div class="timeline-title">Grau en Biotecnologia</div>
+              <div class="timeline-desc">Universitat de Girona. Formació científica que informa una mirada analítica i rigorosa al cinema.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-contact-box">
+          <div class="section-label" style="margin-bottom:1rem">Contacte</div>
+          <a href="mailto:p.riera2004@gmail.com" class="contact-email">p.riera2004@gmail.com</a>
+          <p style="font-size:0.65rem;letter-spacing:0.1em;color:var(--text-muted);margin-top:0.5rem">Per a col·laboracions, acreditacions o qualsevol consulta.</p>
+        </div>
+      </div>
     </div>
+
+  </div>
+</section>
+
+<!-- MODAL ESTRENA -->
+<div class="estrena-modal" id="estrena-modal" onclick="closeEstrenaModal(event)">
+  <div class="estrena-modal-box">
+    <button class="estrena-modal-close" onclick="closeEstrenaModal()">✕</button>
+    <div class="estrena-modal-poster">
+      <img id="em-poster" src="" alt="">
+    </div>
+    <div class="estrena-modal-body">
+      <div class="estrena-modal-tag" id="em-tag"></div>
+      <div class="estrena-modal-title" id="em-title"></div>
+      <div class="estrena-modal-director" id="em-director"></div>
+      <div class="estrena-modal-meta" id="em-meta"></div>
+      <div class="estrena-modal-overview" id="em-overview"></div>
+      <div class="estrena-modal-actions" id="em-actions"></div>
+    </div>
+  </div>
+</div>
+
+<!-- CATÀLEG -->
+<section id="cataleg">
+  <div class="cataleg-inner">
+    <div class="section-label">Catàleg</div>
+    <h2>Totes les pel·lícules</h2>
+    <div class="cataleg-filters">
+      <div class="cataleg-filter-group">
+        <span class="cataleg-filter-label">Festival / Circuit</span>
+        <select class="cataleg-select" id="cat-festival" onchange="renderCataleg()">
+          <option value="">Tots</option>
+          <option value="Cannes 2025">Cannes 2025</option>
+          <option value="Venècia 2025">Venècia 2025</option>
+          <option value="Sitges 2025">Sitges 2025</option>
+          <option value="Cinema">Cinema</option>
+        </select>
+      </div>
+      <div class="cataleg-filter-group">
+        <span class="cataleg-filter-label">Gènere</span>
+        <select class="cataleg-select" id="cat-genre" onchange="renderCataleg()">
+          <option value="">Tots</option>
+          <option value="Drama">Drama</option>
+          <option value="Terror">Terror</option>
+          <option value="Acció">Acció</option>
+          <option value="Fantasia">Fantasia</option>
+        </select>
+      </div>
+      <div class="cataleg-filter-group">
+        <span class="cataleg-filter-label">País</span>
+        <select class="cataleg-select" id="cat-country" onchange="renderCataleg()">
+          <option value="">Tots</option>
+          <option value="Alemanya">Alemanya</option>
+          <option value="França">França</option>
+          <option value="Espanya">Espanya</option>
+          <option value="EUA">EUA</option>
+          <option value="Hongria">Hongria</option>
+          <option value="Xina">Xina</option>
+        </select>
+      </div>
+      <div class="cataleg-filter-group">
+        <span class="cataleg-filter-label">Any</span>
+        <select class="cataleg-select" id="cat-year" onchange="renderCataleg()">
+          <option value="">Tots</option>
+          <option value="2025">2025</option>
+          <option value="2024">2024</option>
+        </select>
+      </div>
+      <button class="cataleg-reset" onclick="resetCataleg()">↺ Reiniciar</button>
+      <span class="cataleg-count" id="cat-count"></span>
+    </div>
+    <table class="cataleg-table">
+      <thead>
+        <tr>
+          <th class="cat-poster-cell"></th>
+          <th onclick="sortCataleg('title')">Títol <span class="sort-arrow" id="sort-title">↕</span></th>
+          <th onclick="sortCataleg('festival')">Festival <span class="sort-arrow" id="sort-festival">↕</span></th>
+          <th onclick="sortCataleg('genre')">Gènere <span class="sort-arrow" id="sort-genre">↕</span></th>
+          <th onclick="sortCataleg('country')">País <span class="sort-arrow" id="sort-country">↕</span></th>
+          <th onclick="sortCataleg('year')">Any <span class="sort-arrow" id="sort-year">↕</span></th>
+          <th onclick="sortCataleg('score')">Nota <span class="sort-arrow" id="sort-score">↕</span></th>
+        </tr>
+      </thead>
+      <tbody id="cataleg-tbody"></tbody>
+    </table>
   </div>
 </section>
 
@@ -573,6 +847,10 @@
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
             Copiar link
           </button>
+          <a id="cinema-btn" class="cinema-btn" href="#" target="_blank" rel="noopener" style="display:none">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            Trobar cinemes
+          </a>
         </div>
         <div class="modal-divider"></div>
         <!-- Trailer -->
@@ -616,12 +894,13 @@ const IMG_B    = 'https://image.tmdb.org/t/p/w1280';
 const KEY      = 'a086250f0c1111d515ce7453e899eb8a';
 
 const MOVIE_IDS = {
-  silent:    1168719,
-  alpha:     1284460,
-  goodboy:   1422096,
-  romeria:   1182861,
-  furious:   1280738,
-  lostlands: 324544,
+  silent:      1168719,
+  alpha:       1284460,
+  goodboy:     1422096,
+  romeria:     1182861,
+  furious:     1280738,
+  lostlands:   324544,
+  soundfalling: 1221061,
 };
 
 function setImg(el, src) {
@@ -637,14 +916,15 @@ async function tmdb(path) {
   try {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 8000);
-    const r = await fetch(`${TMDB_BASE}${path}?api_key=${KEY}`, { signal: controller.signal });
+    const sep = path.includes('?') ? '&' : '?';
+    const r = await fetch(`${TMDB_BASE}${path}${sep}api_key=${KEY}`, { signal: controller.signal });
     clearTimeout(timeout);
     return await r.json();
   } catch { return null; }
 }
 
 async function loadAllPosters() {
-  const keys  = ['silent','alpha','goodboy','romeria','furious','lostlands'];
+  const keys  = ['soundfalling','silent','alpha','goodboy','romeria','furious','lostlands'];
   const cards = document.querySelectorAll('.card-poster img');
 
   // Carrega TOTS en paral·lel (molt més ràpid en mòbil)
@@ -658,7 +938,7 @@ async function loadAllPosters() {
     const src = IMG_W + d.poster_path;
     setImg(cards[i], src);
     reviews[key]._p = src;
-    if (key === 'silent') {
+    if (key === 'soundfalling') {
       setImg(document.getElementById('hero-img'), src);
       setImg(document.getElementById('feat-img'), src);
     }
@@ -667,7 +947,12 @@ async function loadAllPosters() {
 
 // ── SEARCH DROPDOWN ───────────────────────────────────────
 
-// Normalitza: treu accents, minúscules, caràcters especials
+function normalize(str) {
+  return str.toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9\s]/g, ' ')
+    .replace(/\s+/g, ' ').trim();
+}
 function normalize(str) {
   return str.toLowerCase()
     .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // treu accents
@@ -854,6 +1139,16 @@ function extScoresHTML(scores) {
 
 // ── REVIEWS ──────────────────────────────────────────────
 const reviews = {
+  soundfalling: { tag:'Cannes 2025 · Gran Premi del Jurat', title:'Sound of Falling', director:'Mascha Schilinski', score:4,
+    aliases: ['so of falling', 'in die sonne schauen', 'schilinski', 'so falling', 'sonido caida', 'so de caure', 'granja', 'alemanya', 'cannes', 'gran premi'],
+    scores: { rt: 95, imdb: '7.1', mc: 91 },
+    text:`<p>La nova proposta de Mascha Shilinski, <em>Sound of Falling</em>, arriba als cinemes gairebé un any després de la seva estrena al Festival de Cannes on se li va atorgar el Gran Premi del Jurat ex aequo amb <em>Sirat</em> d'Oliver Laxe. Schilinski que s'havia estrenat amb <em>Dark Blue Girl</em> al 2017, sembla haver trobat un estil d'una maduresa sorprenent i amb una bellesa molt profunda i premeditada. La pel·lícula ens explica quatre històries diferents però connectades per alguna cosa que transcendeix la lògica narrativa clàssica: el temps, la terra i el dolor que els murs d'una casa retenen i no alliberen mai.</p>
+    <p>El film es desenvolupa al voltant d'una granja al nord d'Alemanya i de quatre noies, Alma, Erika, Angelika i Lenka, que viuen en èpoques diferents del segle XX. Totes passen la seva joventut en la mateixa masia al llarg d'un segle, i tot i estar separades pels anys, hi apareixen similituds entre les seves vides: els seus desitjos, secrets, angoixes i silencis. Schilinski i la coguionista Louise Peter no segueixen una història lineal sinó que salten entre èpoques, de manera que el que veiem és com la violència i el patiment es repeteixen de generació en generació. La granja no és només un escenari, sinó que és un personatge més. En alguns moments sembla que la tragèdia impregni les seves parets per filtrar-se i contaminar la felicitat de la generació següent.</p>
+    <p>El simbolisme és sempre present, però mai és gratuït. Els ecos de la guerra es veuen en detalls com la por d'anar al front o l'absència d'homes. El riu Elba, que en algunes històries marca la frontera entre l'Alemanya de l'Est i la de l'Oest, aconsegueix una presència amenaçadora. L'aigua en general té molt de pes al film, i la música de Michael Fiedler i Eike Hosenfeld hi ajuda, conjuntament amb un espectacular disseny de so. La mort és un dels temes principals de la pel·lícula i hi és present des del primer minut, com una ombra que acompanya els personatges. Les noies juguen amb la idea de morir i en parlen amb una naturalitat que fa posar els pèls de punta, i la manera com es tracta la història fa pensar que podem estar veient un relat de fantasmes.</p>
+    <p>En l'apartat tècnic el film resalta, ja que és excel·lent. La fotografia de Fabian Gamper juga un paper clau, amb un tractament de la llum natural esplèndid, que crea canvis de sensació constants. La càmera es mou per la granja, lenta, silenciosa, com si nosaltres mateixos fóssim un fantasma. Els interiors estan gravats amb poca llum, fent que les protagonistes semblin brillar a la foscor, com si fossin l'única font de vida en un espai que les consumeix. Mentre que a fora els camps oberts estan plens de llum i un verd intens, creant una contradicció visual constant. La fotografia també està molt ben treballada també en els primers plans, sovint de mans o ulls, transmetent sense necessitat de parlar, i deixant imatges que queden gravades a la memòria.</p>
+    <p>El càsting és un dels grans encerts de la pel·lícula. La jove Hanna Heckt, en el seu debut a la gran pantalla com l'Alma de principis de segle, és una gran revelació, transmetent moltíssim amb la seva presència tranquil·la. Lea Drinda, que interpreta l'Erika dels anys quaranta, té moments molt memorables, i Lena Urzendowsky i Laeni Geiseler completen el repartiment d'una manera molt convincent.</p>
+    <p>El film també té alguns problemes que val la pena mencionar, com la irregularitat entre els quatre capítols, que fa que no tots funcionin igual de bé, amb algun d'ells que sembla no estar acabat de desenvolupar, com si la cineasta hagués tingut més clar cap a on anar amb algunes de les protagonistes que amb unes altres. Hi ha moments també en què el ritme lent deixa de ser una decisió artística per passar a ser un inconvenient, amb escenes que s'allarguen més del necessari, i això es fa notar sobretot en tractar-se d'un film de quasi dues hores i mitja. La pel·lícula tampoc no facilita entrar-hi, ja que no hi ha cap guia ni personatge que faci de pont amb l'espectador, la qual cosa fa que qui no estigui acostumat a aquest tipus de cinema pugui trobar-se perdut als vint minuts de pel·lícula. És una pel·lícula que exigeix molt i que no s'esforça especialment a enganxar l'espectador.</p>
+    <p>Però per als que hi entren, <em>Sound of Falling</em> és una experiència que costa d'oblidar. És l'estil de pel·lícula en què es continua pensant dies després, tornant-hi ja sigui en imatges o en sons. El que sens dubte està clar, és que Schilinski és una de les directores més interessants del cinema europeu ara mateix, i que cal tenir-la al radar.</p>` },
   silent:    { tag:'Venècia 2025 · Destacat', title:'Silent Friend',     director:'Ildikó Enyedi',      score:4.5,
     aliases: ['amic silent', 'amigo silencioso', 'silent friend', 'enyedi', 'tony leung', 'ginkgo', 'venecia', 'venezia'],
     scores: { rt: 100, imdb: '7.6', mc: 89 },
@@ -874,7 +1169,7 @@ const reviews = {
     scores: { rt: 70, imdb: '5.8', mc: 44 },
     text:`<p><em>Good Boy</em> de Ben Leonberg, arribava com una de les pel·lícules més esperades del festival gràcies a una premissa molt atractiva. Compleix amb el que s'espera d'ella, però ho fa, principalment, gràcies a l'estel·lar actuació de l'Indy. El gos protagonista que es guanya el públic amb la que opino que és una de les millors actuacions animal que s'han vist a la pantalla gran.</p>
     <p>Tot i ser una bona experiència, el film es queda curt en contingut i no aconsegueix explotar tot el potencial de les seves idees al complet. De totes maneres, una obra entretinguda i interessant que val la pena veure pel magnetisme del seu protagonisme.</p>` },
-  romeria:   { tag:'Sitges 2025 · Breu',      title:'Romería',           director:'Carla Simón',        score:4,
+  romeria:   { tag:'Cannes 2025 · Breu',      title:'Romería',           director:'Carla Simón',        score:4,
     aliases: ['romeria', 'romería', 'carla simon', 'alcarras', 'verano 1993', 'estiu 1993', 'memoria', 'vigo'],
     scores: { rt: 86, imdb: '6.9', mc: 74 },
     text:`<p>Tancament perfecte per a una trilogia dedicada al cinema de la memòria, ratificant el creixement d'una cineasta que trenca amb els seus propis esquemes, aconseguint un realisme poètic devastador impregnat d'una bellesa plena de simbolisme.</p>` },
@@ -882,7 +1177,7 @@ const reviews = {
     aliases: ['furiós', 'furious', 'el furiós', 'tanigaki', 'arts marcials', 'accio', 'xie miao'],
     scores: { rt: null, imdb: '6.3', mc: null },
     text:`<p><em>The Furious</em>, l'última pel·lícula de Kenji Tanigaki, ha fet vibrar l'Auditori Melià a Sitges. Una sorpresa brutal del festival amb increïbles seqüències d'acció perfectament coreografiades, equilibrades amb tensió i satisfacció, deixant un film molt entretingut de principi a fi.</p>` },
-  lostlands: { tag:'Sitges 2025 · Breu',      title:'In the Lost Lands', director:'Paul W.S. Anderson', score:1,
+  lostlands: { tag:'Cinema · Breu',      title:'In the Lost Lands', director:'Paul W.S. Anderson', score:1,
     aliases: ['lost lands', 'terres perdudes', 'tierras perdidas', 'paul anderson', 'milla jovovich', 'fantasia'],
     scores: { rt: 17, imdb: '5.1', mc: 30 },
     text:`<p><em>In the Lost Lands</em>, de Paul W.S. Anderson, és un autèntic despropòsit de pel·lícula. La majoria d'escenes manquen intencionalitat, convertint la pel·lícula en una obra caòtica i desordenada. Tanmateix, el problema principal del film són els seus diàlegs sense vida i un guió deficient que fa que els personatges no semblin creure's el que diuen, derivant en unes actuacions nefastes. Fa la sensació que el director hagués demanat als actors que es limitessin a llegir les seves línies sense arribar a interpretar-les. Tots aquests defectes donen com a resultat uns personatges sense carisma les històries dels quals no desperten gens ni mica d'interès en l'espectador. Finalment, un muntatge pèssim provoca que les seqüències se sentin incompletes, transformant aquesta pel·lícula en una experiència tediosa i sense sentit.</p>` }
@@ -897,7 +1192,7 @@ document.querySelectorAll('.review-card').forEach(card => {
   if (el) el.innerHTML = buildStars(r.score, 13);
 });
 const featRating = document.querySelector('.rating');
-if (featRating) featRating.innerHTML = buildStars(4.5, 22);
+if (featRating) featRating.innerHTML = buildStars(4, 22);
 
 // ── MODAL ────────────────────────────────────────────────
 async function openModal(id) {
@@ -912,6 +1207,12 @@ async function openModal(id) {
   document.getElementById('m-text').innerHTML       = r.text;
   document.getElementById('m-trailer').innerHTML    = '';
   document.getElementById('m-gallery').innerHTML    = '';
+
+  // Botó cinemes — sempre visible amb link a Google
+  const cinemaBtn = document.getElementById('cinema-btn');
+  const query = encodeURIComponent(`${r.title} cinemes horaris`);
+  cinemaBtn.href = `https://www.google.com/search?q=${query}`;
+  cinemaBtn.style.display = 'flex';
 
   document.getElementById('modal-overlay').classList.add('open');
   // iOS fix: no bloquejem el body, deixem que el modal faci scroll intern
@@ -1040,7 +1341,11 @@ document.addEventListener('keydown', e => {
     else if (e.key === 'Escape') closeLightbox();
     return;
   }
-  if (e.key === 'Escape') closeModalBtn();
+  if (e.key === 'Escape') {
+    closeModalBtn();
+    document.getElementById('estrena-modal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
 });
 
 // Swipe mòbil al lightbox
@@ -1061,8 +1366,256 @@ document.getElementById('lightbox').addEventListener('click', e => {
       e.target === document.getElementById('lightbox-img')) closeLightbox();
 });
 
+// ── ESTRENES ──────────────────────────────────────────────
+const estrenesCache = {};
+let estrenesTab = 'now';
+
+async function loadEstrenes(tab) {
+  const scroll = document.getElementById('estrenes-scroll');
+  scroll.innerHTML = '<div class="estrenes-loading">Carregant estrenes…</div>';
+
+  if (estrenesCache[tab]) { renderEstrenes(estrenesCache[tab]); return; }
+
+  const endpoint = tab === 'now'
+    ? `/movie/now_playing?language=es-ES&region=ES&api_key=${KEY}`
+    : `/movie/upcoming?language=es-ES&region=ES&api_key=${KEY}`;
+
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 8000);
+  let data;
+  try {
+    const r = await fetch(`${TMDB_BASE}${endpoint}`, { signal: controller.signal });
+    clearTimeout(timeout);
+    data = await r.json();
+  } catch { data = null; }
+  if (!data?.results) { scroll.innerHTML = '<div class="estrenes-loading">No s\'han pogut carregar les estrenes.</div>'; return; }
+
+  // Filtra les que tenen pòster i agafa les primeres 20
+  const movies = data.results.filter(m => m.poster_path).slice(0, 20);
+  estrenesCache[tab] = movies;
+  renderEstrenes(movies);
+}
+
+// Mapa de TMDB IDs → clau de review per detectar ressenyes exactes
+const reviewedTmdbIds = Object.fromEntries(
+  Object.entries(MOVIE_IDS).map(([key, id]) => [id, key])
+);
+
+function renderEstrenes(movies) {
+  const scroll = document.getElementById('estrenes-scroll');
+  scroll.innerHTML = movies.map(m => {
+    const reviewKey = reviewedTmdbIds[m.id];
+    const isReviewed = !!reviewKey;
+    const date = m.release_date
+      ? new Date(m.release_date).toLocaleDateString('ca-ES', { day:'numeric', month:'short', year:'numeric' })
+      : '';
+    const reviewed = isReviewed ? `<div class="estrena-reviewed">✓ Resenyada</div>` : '';
+    return `<div class="estrena-card" onclick="openEstrenaModal(${m.id}, '${m.title.replace(/'/g,"\\'")}', '${reviewKey || ''}')">
+      ${reviewed}
+      <img class="estrena-poster" src="https://image.tmdb.org/t/p/w342${m.poster_path}"
+        alt="${m.title}" onload="this.classList.add('loaded')">
+      <div class="estrena-info">
+        <div class="estrena-title">${m.title}</div>
+        <div class="estrena-date">${date}</div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function switchEstrenesTab(tab, btn) {
+  estrenesTab = tab;
+  document.querySelectorAll('.estrenes-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  loadEstrenes(tab);
+}
+
+async function openEstrenaModal(tmdbId, title, reviewKey) {
+  // Si tenim ressenya pròpia, obre el modal complet
+  if (reviewKey && reviews[reviewKey]) { openModal(reviewKey); return; }
+
+  // Mostra el modal d'estrena amb loading
+  const em = document.getElementById('estrena-modal');
+  document.getElementById('em-title').textContent    = title;
+  document.getElementById('em-tag').textContent      = '';
+  document.getElementById('em-director').textContent = '';
+  document.getElementById('em-meta').innerHTML       = '';
+  document.getElementById('em-overview').textContent = 'Carregant informació…';
+  document.getElementById('em-actions').innerHTML    = '';
+  const poster = document.getElementById('em-poster');
+  poster.src = ''; poster.classList.remove('loaded');
+  em.classList.add('open');
+  document.body.style.overflow = 'hidden';
+
+  // Fetch dades en català, amb fallback a espanyol si no hi ha traducció
+  const [dataCA, dataES] = await Promise.all([
+    tmdb(`/movie/${tmdbId}?language=ca`),
+    tmdb(`/movie/${tmdbId}?language=es-ES`)
+  ]);
+  const data = dataCA || dataES;
+  if (!data) { document.getElementById('em-overview').textContent = 'No s\'ha pogut carregar la informació.'; return; }
+
+  // Usa la sinopsi en català si existeix, si no tradueix des del castellà
+  const overviewES = dataES?.overview || '';
+  const overviewCA = (dataCA?.overview && dataCA.overview.trim()) ? dataCA.overview : null;
+
+  if (overviewCA) {
+    document.getElementById('em-overview').textContent = overviewCA;
+  } else if (overviewES) {
+    document.getElementById('em-overview').textContent = 'Traduint…';
+    // Google Translate (gratuït, sense clau)
+    try {
+      const res = await fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=es&tl=ca&dt=t&q=${encodeURIComponent(overviewES)}`);
+      const json = await res.json();
+      const translated = json[0].map(s => s[0]).join('');
+      document.getElementById('em-overview').textContent = translated || overviewES;
+    } catch {
+      document.getElementById('em-overview').textContent = overviewES;
+    }
+  } else {
+    document.getElementById('em-overview').textContent = 'Sinopsi no disponible.';
+  }
+  // Pòster
+  if (data.poster_path) {
+    poster.src = `https://image.tmdb.org/t/p/w342${data.poster_path}`;
+    poster.onload = () => poster.classList.add('loaded');
+  }
+
+  // Info
+  const directors = [];
+  const creditsData = await tmdb(`/movie/${tmdbId}/credits?language=es-ES`);
+  if (creditsData?.crew) {
+    creditsData.crew.filter(c => c.job === 'Director').forEach(d => directors.push(d.name));
+  }
+
+  const releaseDate = data.release_date
+    ? new Date(data.release_date).toLocaleDateString('ca-ES', { day:'numeric', month:'long', year:'numeric' })
+    : '';
+  const runtime = data.runtime ? `${data.runtime} min` : '';
+  const genres = data.genres?.map(g => g.name).join(', ') || '';
+  const countries = data.production_countries?.map(c => c.name).join(', ') || '';
+
+  document.getElementById('em-tag').textContent      = releaseDate;
+  document.getElementById('em-title').textContent    = data.title || title;
+  document.getElementById('em-director').textContent = directors.join(', ');
+
+  document.getElementById('em-meta').innerHTML = [runtime, genres, countries]
+    .filter(Boolean)
+    .map(v => `<span class="estrena-modal-badge">${v}</span>`)
+    .join('');
+
+  // Botons
+  const cinemaQuery = encodeURIComponent(`${data.title || title} cines entradas`);
+  document.getElementById('em-actions').innerHTML = `
+    <a class="cinema-btn" href="https://www.google.com/search?q=${cinemaQuery}" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      Trobar cinemes i horaris
+    </a>
+    <a class="cinema-btn" href="https://www.sensacine.com/buscar/?q=${encodeURIComponent(data.title || title)}" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      Sensacine
+    </a>`;
+}
+
+function closeEstrenaModal(e) {
+  if (e && e.target !== document.getElementById('estrena-modal')) return;
+  document.getElementById('estrena-modal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+// Carrega inicial
+loadEstrenes('now');
+const catalogData = [
+  { id:'soundfalling', festival:'Cannes 2025',  year:2025, country:'Alemanya',        genres:['Drama'] },
+  { id:'romeria',      festival:'Cannes 2025',  year:2025, country:'Espanya',          genres:['Drama'] },
+  { id:'silent',       festival:'Venècia 2025', year:2025, country:'Hongria',          genres:['Drama'] },
+  { id:'alpha',        festival:'Sitges 2025',  year:2025, country:'França',           genres:['Drama','Terror'] },
+  { id:'goodboy',      festival:'Sitges 2025',  year:2025, country:'EUA',              genres:['Terror'] },
+  { id:'furious',      festival:'Sitges 2025',  year:2025, country:'Xina',             genres:['Acció'] },
+  { id:'lostlands',    festival:'Cinema',       year:2025, country:'EUA',              genres:['Fantasia','Acció'] },
+];
+
+let catSort = { key: 'score', dir: -1 };
+
+function renderCataleg() {
+  const fFest    = document.getElementById('cat-festival').value;
+  const fGenre   = document.getElementById('cat-genre').value;
+  const fCountry = document.getElementById('cat-country').value;
+  const fYear    = document.getElementById('cat-year').value;
+
+  let rows = catalogData.filter(d => {
+    const r = reviews[d.id]; if (!r) return false;
+    if (fFest    && d.festival !== fFest) return false;
+    if (fGenre   && !d.genres.includes(fGenre)) return false;
+    if (fCountry && d.country !== fCountry) return false;
+    if (fYear    && d.year !== parseInt(fYear)) return false;
+    return true;
+  });
+
+  // Sort
+  rows.sort((a, b) => {
+    const ra = reviews[a.id], rb = reviews[b.id];
+    let va, vb;
+    if (catSort.key === 'title')    { va = ra.title;    vb = rb.title; }
+    if (catSort.key === 'festival') { va = a.festival;  vb = b.festival; }
+    if (catSort.key === 'genre')    { va = a.genres[0]; vb = b.genres[0]; }
+    if (catSort.key === 'country')  { va = a.country;   vb = b.country; }
+    if (catSort.key === 'year')     { va = a.year;      vb = b.year; }
+    if (catSort.key === 'score')    { va = ra.score;    vb = rb.score; }
+    if (typeof va === 'string') return catSort.dir * va.localeCompare(vb);
+    return catSort.dir * (va - vb);
+  });
+
+  document.getElementById('cat-count').textContent = `${rows.length} pel·lícula${rows.length !== 1 ? 's' : ''}`;
+
+  const tbody = document.getElementById('cataleg-tbody');
+  if (!rows.length) {
+    tbody.innerHTML = `<tr><td colspan="7" class="cataleg-empty">Cap resultat amb aquests filtres.</td></tr>`;
+    return;
+  }
+
+  tbody.innerHTML = rows.map(d => {
+    const r = reviews[d.id];
+    const poster = r._p ? `<img class="cat-poster loaded" src="${r._p}" alt="${r.title}">` 
+                        : `<div style="width:36px;height:54px;background:var(--bg3)"></div>`;
+    return `<tr class="cataleg-row" onclick="openModal('${d.id}')">
+      <td class="cat-poster-cell">${poster}</td>
+      <td>
+        <div class="cat-title">${r.title}</div>
+        <div class="cat-director">${r.director}</div>
+      </td>
+      <td><span class="cat-badge">${d.festival}</span></td>
+      <td><span class="cat-genre">${d.genres.join(', ')}</span></td>
+      <td><span class="cat-country">${d.country}</span></td>
+      <td><span class="cat-year">${d.year}</span></td>
+      <td>${buildStars(r.score, 12)}</td>
+    </tr>`;
+  }).join('');
+}
+
+function sortCataleg(key) {
+  if (catSort.key === key) { catSort.dir *= -1; }
+  else { catSort.key = key; catSort.dir = key === 'score' ? -1 : 1; }
+  // Update arrows
+  document.querySelectorAll('.sort-arrow').forEach(el => el.textContent = '↕');
+  const el = document.getElementById(`sort-${key}`);
+  if (el) el.textContent = catSort.dir === 1 ? '↑' : '↓';
+  document.querySelectorAll('.cataleg-table th').forEach(th => th.classList.remove('sorted'));
+  document.querySelectorAll('.cataleg-table th').forEach(th => {
+    if (th.querySelector(`#sort-${key}`)) th.classList.add('sorted');
+  });
+  renderCataleg();
+}
+
+function resetCataleg() {
+  document.getElementById('cat-festival').value = '';
+  document.getElementById('cat-genre').value = '';
+  document.getElementById('cat-country').value = '';
+  document.getElementById('cat-year').value = '';
+  renderCataleg();
+}
+
 // ← loadAllPosters DESPRÉS de reviews
-loadAllPosters();
+loadAllPosters().then(() => renderCataleg());
 </script>
 </body>
 </html>
