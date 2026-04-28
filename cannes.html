@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Canes 2026 — Primer Pla</title>
+<meta name="description" content="Cobertura completa del 79è Festival de Canes 2026. Selecció oficial, Quinzaine, agenda i crítiques en directe per Primer Pla.">
+<meta property="og:title" content="Canes 2026 — Primer Pla">
+<meta property="og:description" content="Cobertura completa del 79è Festival de Canes. Selecció oficial, Quinzaine i crítiques en directe.">
+<meta property="og:image" content="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Cannes_2007.jpg/1280px-Cannes_2007.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Josefin+Sans:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080808; --bg2: #0f0f0f; --bg3: #161616;
+    --text: #e8e0d4; --text-muted: #7a7268;
+    --accent: #c8a96e; --border: #222; --white: #f5f0e8;
+    --cannes: #d4a843;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 70px; }
+  body { background: var(--bg); color: var(--text); font-family: 'Josefin Sans', sans-serif; font-weight: 300; letter-spacing: 0.03em; overflow-x: hidden; }
+
+  body::before {
+    content: ''; position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 2; opacity: 0.5;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 4rem;
+    background: rgba(8,8,8,0.97); border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-weight: 300; letter-spacing: 0.15em; color: var(--white); text-decoration: none; text-transform: uppercase; }
+  .nav-logo span { color: var(--accent); }
+  .nav-back { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); text-decoration: none; display: flex; align-items: center; gap: 0.5rem; transition: color 0.2s; }
+  .nav-back:hover { color: var(--accent); }
+  .nav-back svg { width: 14px; height: 14px; }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  #hero {
+    min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 70px 4rem 5rem; position: relative; overflow: hidden;
+  }
+  .hero-bg-img { position: absolute; inset: 0; z-index: 0; }
+  .hero-bg-img img { width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.5s ease; filter: grayscale(40%) brightness(0.3); }
+  .hero-bg-img img.loaded { opacity: 1; }
+  .hero-bg-img::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, rgba(8,8,8,0.95) 40%, rgba(8,8,8,0.6) 100%), linear-gradient(to top, rgba(8,8,8,0.9) 0%, transparent 40%); }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse at 80% 30%, rgba(200,169,110,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 10% 80%, rgba(212,168,67,0.06) 0%, transparent 50%);
+  }
+  .hero-year {
+    position: absolute; right: 4rem; top: 50%; transform: translateY(-50%);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(8rem, 20vw, 22rem);
+    font-weight: 300; color: rgba(200,169,110,0.06);
+    letter-spacing: -0.05em; line-height: 1; user-select: none;
+    z-index: 0;
+  }
+  .hero-content { position: relative; z-index: 1; }
+  .hero-edition { font-size: 0.62rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: flex; align-items: center; gap: 1rem; }
+  .hero-edition::before { content: ''; width: 40px; height: 1px; background: var(--accent); }
+  h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(4rem, 10vw, 9rem); font-weight: 300; line-height: 0.88; color: var(--white); }
+  h1 em { font-style: italic; color: var(--accent); }
+  .hero-meta { margin-top: 2rem; display: flex; gap: 3rem; flex-wrap: wrap; }
+  .hero-meta-item { }
+  .hero-meta-label { font-size: 0.55rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.3rem; }
+  .hero-meta-val { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; color: var(--white); }
+  .hero-badge {
+    position: absolute; top: 5rem; right: 4rem;
+    background: none; border: 1px solid var(--accent);
+    padding: 1.2rem; text-align: center; max-width: 160px; z-index: 1;
+  }
+  .hero-badge-label { font-size: 0.52rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.5rem; display: block; }
+  .hero-badge-name { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: var(--white); line-height: 1.3; }
+  .hero-badge-role { font-size: 0.55rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.3rem; display: block; }
+  .acred-banner {
+    margin-top: 2.5rem; display: inline-flex; align-items: center; gap: 0.8rem;
+    border: 1px solid rgba(200,169,110,0.3); padding: 0.6rem 1.2rem;
+    background: rgba(200,169,110,0.05);
+  }
+  .acred-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.4;transform:scale(0.8)} }
+  .acred-text { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--accent); }
+
+  /* AGENDA */
+  #agenda { padding: 6rem 4rem; background: var(--bg2); border-top: 1px solid var(--border); }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+  .section-label { font-size: 0.6rem; letter-spacing: 0.4em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: flex; align-items: center; gap: 1rem; }
+  .section-label::after { content: ''; flex: 1; max-width: 40px; height: 1px; background: var(--accent); }
+  h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; color: var(--white); line-height: 1.1; margin-bottom: 3rem; }
+  .agenda-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; }
+  .agenda-item { background: var(--bg3); padding: 1.8rem; border: 1px solid var(--border); }
+  .agenda-date { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--accent); font-weight: 300; line-height: 1; }
+  .agenda-month { font-size: 0.58rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.2rem; margin-bottom: 0.8rem; }
+  .agenda-event { font-size: 0.75rem; color: var(--white); letter-spacing: 0.05em; line-height: 1.4; }
+  .agenda-sub { font-size: 0.62rem; color: var(--text-muted); margin-top: 0.3rem; font-style: italic; font-family: 'Cormorant Garamond', serif; }
+
+  /* SECTIONS TABS */
+  #seleccio { padding: 6rem 4rem; border-top: 1px solid var(--border); }
+  .tabs { display: flex; gap: 0; margin-bottom: 3rem; border-bottom: 1px solid var(--border); overflow-x: auto; }
+  .tab { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); background: none; border: none; border-bottom: 2px solid transparent; padding: 0.8rem 1.5rem 0.8rem 0; cursor: pointer; font-family: 'Josefin Sans', sans-serif; transition: all 0.2s; margin-bottom: -1px; white-space: nowrap; flex-shrink: 0; }
+  .tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* FILMS GRID */
+  .films-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 1.5rem; }
+  .film-card { cursor: default; }
+  .film-poster { width: 100%; aspect-ratio: 2/3; background: var(--bg3); border: 1px solid var(--border); overflow: hidden; position: relative; }
+  .film-poster img { width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.5s; }
+  .film-poster img.loaded { opacity: 1; }
+  .film-poster-ph { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; font-size: 0.7rem; color: var(--border); letter-spacing: 0.15em; text-transform: uppercase; text-align: center; padding: 0.5rem; }
+  .film-info { padding: 0.7rem 0 0; }
+  .film-title { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; color: var(--white); line-height: 1.2; margin-bottom: 0.2rem; }
+  .film-director { font-size: 0.58rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-muted); }
+  .film-flag { font-size: 0.9rem; }
+  .film-reviewed { display: inline-block; font-size: 0.5rem; letter-spacing: 0.15em; text-transform: uppercase; background: var(--accent); color: var(--bg); padding: 0.15rem 0.4rem; margin-top: 0.3rem; cursor: pointer; }
+  .film-reviewed:hover { opacity: 0.8; }
+
+  /* QUINZAINE highlight */
+  .quinzaine-header { display: flex; align-items: center; gap: 1.5rem; margin-bottom: 2rem; flex-wrap: wrap; }
+  .quinzaine-badge { font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bg); background: var(--accent); padding: 0.3rem 0.8rem; }
+  .quinzaine-info { font-family: 'Cormorant Garamond', serif; font-size: 1rem; color: var(--text-muted); font-style: italic; }
+  .opening-closing { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 3rem; }
+  .oc-card { border: 1px solid var(--border); padding: 1.5rem; position: relative; }
+  .oc-label { font-size: 0.55rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8rem; }
+  .oc-title { font-family: 'Cormorant Garamond', serif; font-size: 1.4rem; color: var(--white); margin-bottom: 0.3rem; }
+  .oc-director { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); }
+
+  /* CRÍTIQUES SECTION */
+  #critiques-cannes { padding: 6rem 4rem; background: var(--bg2); border-top: 1px solid var(--border); }
+  .critiques-empty { text-align: center; padding: 4rem 2rem; }
+  .critiques-empty-icon { font-family: 'Cormorant Garamond', serif; font-size: 4rem; color: var(--border); margin-bottom: 1.5rem; }
+  .critiques-empty-text { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; font-style: italic; color: var(--text-muted); margin-bottom: 0.5rem; }
+  .critiques-empty-sub { font-size: 0.62rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); }
+  .countdown-wrap { display: flex; gap: 2rem; justify-content: center; margin-top: 2.5rem; flex-wrap: wrap; }
+  .countdown-item { text-align: center; border: 1px solid var(--border); padding: 1.2rem 1.8rem; }
+  .countdown-num { font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; color: var(--accent); display: block; line-height: 1; }
+  .countdown-label { font-size: 0.55rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--text-muted); margin-top: 0.3rem; display: block; }
+
+  /* FOOTER */
+  footer { border-top: 1px solid var(--border); padding: 2.5rem 4rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 300; letter-spacing: 0.15em; color: var(--text-muted); text-transform: uppercase; }
+  .footer-logo span { color: var(--accent); }
+  .footer-copy { font-size: 0.6rem; letter-spacing: 0.2em; color: var(--text-muted); text-transform: uppercase; }
+
+  /* FADE IN */
+  .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 960px) {
+    nav { padding: 1rem 1.5rem; }
+    #hero, #agenda, #seleccio, #critiques-cannes, #sobre, #novetats { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .agenda-grid { grid-template-columns: 1fr 1fr; }
+    .hero-badge { display: none; }
+  }
+  @media (max-width: 600px) {
+    nav { padding: 0.9rem 1rem; }
+    .nav-links { display: none; }
+    #hero { padding: 70px 1rem 3rem; }
+    #agenda, #seleccio, #critiques-cannes, #sobre, #novetats { padding: 3rem 1rem; }
+    .agenda-grid { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+    .agenda-item { padding: 1.2rem; }
+    .opening-closing { grid-template-columns: 1fr; }
+    .films-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 1rem; }
+    footer { padding: 2rem 1rem; flex-direction: column; text-align: center; }
+    h1 { font-size: 3.5rem; }
+    .hero-year { display: none; }
+    #sobre .fade-in > div:first-child { grid-template-columns: 1fr !important; }
+    #sobre .fade-in > div:last-child { grid-template-columns: 1fr !important; }
+    #novetats .fade-in { grid-template-columns: 1fr !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo">Primer<span>·</span>Pla</a>
+  <ul class="nav-links">
+    <li><a href="#sobre">El festival</a></li>
+    <li><a href="#novetats">Novetats</a></li>
+    <li><a href="#agenda">Agenda</a></li>
+    <li><a href="#seleccio">Selecció</a></li>
+    <li><a href="#critiques-cannes">Les meves crítiques</a></li>
+  </ul>
+  <a href="index.html" class="nav-back">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    Tornar
+  </a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-bg-img"><img id="hero-backdrop" src="" alt="Cannes"></div>
+  <div class="hero-year">2026</div>
+  <div class="hero-badge">
+    <span class="hero-badge-label">President del Jurat</span>
+    <div class="hero-badge-name">Park<br>Chan-wook</div>
+    <span class="hero-badge-role">Cineasta coreà</span>
+  </div>
+  <div class="hero-content">
+    <div class="hero-edition">79a edició · Festival de Canes</div>
+    <h1>Canes<br><em>2026</em></h1>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <div class="hero-meta-label">Dates</div>
+        <div class="hero-meta-val">12 – 23 de maig</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="hero-meta-label">Lloc</div>
+        <div class="hero-meta-val">Cannes, França</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="hero-meta-label">Films en competició</div>
+        <div class="hero-meta-val">22 pel·lícules</div>
+      </div>
+      <div class="hero-meta-item">
+        <div class="hero-meta-label">Palma d'Or honorífica</div>
+        <div class="hero-meta-val">Peter Jackson · Barbra Streisand</div>
+      </div>
+    </div>
+    <div class="acred-banner">
+      <div class="acred-dot"></div>
+      <span class="acred-text">Acreditació en procés — Quinzaine des Cinéastes</span>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE EL FESTIVAL -->
+<section id="sobre" style="padding:6rem 4rem;border-top:1px solid var(--border)">
+  <div class="section-inner">
+    <div class="section-label fade-in">El festival</div>
+    <h2 class="fade-in">Una mica d'història</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start" class="fade-in">
+      <div>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;line-height:1.9;color:var(--text);margin-bottom:1.5rem;text-align:justify;hyphens:auto">Tot va començar amb una indignació. L'any <strong style="color:var(--accent)">1938</strong>, el govern francès va abandonar el Festival de Venècia quan va comprovar que Mussolini el manipulava per premiar films nazis i feixistes. Jean Zay, ministre d'Educació Nacional, va decidir crear un festival alternatiu i independent: el Festival de Canes.</p>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;line-height:1.9;color:var(--text);margin-bottom:1.5rem;text-align:justify;hyphens:auto">La guerra ho va aturar tot. L'edició inaugural es va celebrar finalment el setembre de <strong style="color:var(--accent)">1946</strong>, en un clima d'eufòria postbèl·lica, amb estrelles com Cary Grant i Marlene Dietrich als carrers de Cannes. Des de llavors, el festival ha crescut fins a convertir-se en l'esdeveniment cinematogràfic més important del món, per davant de Venècia i Berlín.</p>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;line-height:1.9;color:var(--text);text-align:justify;hyphens:auto">La <strong style="color:var(--accent)">Palma d'Or</strong> com a premi principal es va instaurar el 1955. Des d'aleshores, l'han guanyat directors com Fellini, Coppola, Tarantino, Haneke o Kore-eda. Avui, la Palma continua sent el guardó cinematogràfic més cobejat del món.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:1.5rem">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px">
+          <div style="background:var(--bg2);border:1px solid var(--border);padding:1.5rem;text-align:center">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:2.5rem;color:var(--accent)">1946</div>
+            <div style="font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted);margin-top:0.3rem">Any de fundació</div>
+          </div>
+          <div style="background:var(--bg2);border:1px solid var(--border);padding:1.5rem;text-align:center">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:2.5rem;color:var(--accent)">24</div>
+            <div style="font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted);margin-top:0.3rem">Graons de la catifa roja</div>
+          </div>
+          <div style="background:var(--bg2);border:1px solid var(--border);padding:1.5rem;text-align:center">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:2.5rem;color:var(--accent)">+30K</div>
+            <div style="font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted);margin-top:0.3rem">Professionals acreditats</div>
+          </div>
+          <div style="background:var(--bg2);border:1px solid var(--border);padding:1.5rem;text-align:center">
+            <div style="font-family:'Cormorant Garamond',serif;font-size:2.5rem;color:var(--accent)">141</div>
+            <div style="font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted);margin-top:0.3rem">Països participants 2026</div>
+          </div>
+        </div>
+        <div style="border-left:2px solid var(--accent);padding:1.5rem 1.5rem 1.5rem 2rem;background:var(--bg2);border-right:1px solid var(--border);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+          <p style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:var(--white);line-height:1.6;margin-bottom:0.8rem">"Quan el món perd el rumb, mostrar pel·lícules de tots els racons del globus no és un gest trivial. És una defensa del bé més preuat de la humanitat: la llibertat de pensament."</p>
+          <div style="font-size:0.58rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted)">Iris Knobloch — Presidenta del Festival 2026</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Galeria visual amb imatges reals de Canes -->
+    <div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:0.5rem;margin-top:4rem" class="fade-in">
+      <div style="position:relative;overflow:hidden;aspect-ratio:16/9;border:1px solid var(--border)">
+        <img src="cannes-palais.jpg" alt="Palais des Festivals"
+          style="width:100%;height:100%;object-fit:cover;filter:grayscale(15%) brightness(0.85);transition:filter 0.4s"
+          onmouseover="this.style.filter='grayscale(0%) brightness(1)'"
+          onmouseout="this.style.filter='grayscale(15%) brightness(0.85)'">
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:0.8rem;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent)">
+          <div style="font-size:0.55rem;letter-spacing:0.25em;text-transform:uppercase;color:rgba(255,255,255,0.7)">Palais des Festivals</div>
+        </div>
+      </div>
+      <div style="position:relative;overflow:hidden;aspect-ratio:3/4;border:1px solid var(--border)">
+        <img src="cannes-drone.jpg" alt="Cannes des del cel"
+          style="width:100%;height:100%;object-fit:cover;filter:grayscale(15%) brightness(0.85);transition:filter 0.4s"
+          onmouseover="this.style.filter='grayscale(0%) brightness(1)'"
+          onmouseout="this.style.filter='grayscale(15%) brightness(0.85)'">
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:0.8rem;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent)">
+          <div style="font-size:0.55rem;letter-spacing:0.25em;text-transform:uppercase;color:rgba(255,255,255,0.7)">Vista aèria · 2024</div>
+        </div>
+      </div>
+      <div style="position:relative;overflow:hidden;aspect-ratio:3/4;border:1px solid var(--border)">
+        <img src="cannes-redcarpet.jpg" alt="Catifa roja"
+          style="width:100%;height:100%;object-fit:cover;object-position:center 30%;filter:grayscale(15%) brightness(0.85);transition:filter 0.4s"
+          onmouseover="this.style.filter='grayscale(0%) brightness(1)'"
+          onmouseout="this.style.filter='grayscale(15%) brightness(0.85)'">
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:0.8rem;background:linear-gradient(to top,rgba(0,0,0,0.7),transparent)">
+          <div style="font-size:0.55rem;letter-spacing:0.25em;text-transform:uppercase;color:rgba(255,255,255,0.7)">La catifa roja</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NOVETATS 2026 -->
+<section id="novetats" style="padding:6rem 4rem;background:var(--bg2);border-top:1px solid var(--border)">
+  <div class="section-inner">
+    <div class="section-label fade-in">Actualitat</div>
+    <h2 class="fade-in">Novetats de la 79a edició</h2>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px" class="fade-in">
+
+      <div style="background:var(--bg3);border:1px solid var(--border);padding:2rem;display:flex;flex-direction:column;gap:0.8rem">
+        <div style="font-size:0.55rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--accent)">Pòster oficial</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--white);line-height:1.2">Thelma &amp; Louise tornen a la Croisette</div>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:0.95rem;line-height:1.7;color:var(--text-muted);flex:1">Geena Davis i Susan Sarandon protagonitzen el cartell oficial. Trenta-cinc anys després de l'estrena del film de Ridley Scott a Canes el 1991, les dues actrius tornen com a símbols d'emancipació i llibertat.</p>
+        <div style="font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted)">9 d'abril 2026</div>
+      </div>
+
+      <div style="background:var(--bg3);border:1px solid var(--border);padding:2rem;display:flex;flex-direction:column;gap:0.8rem">
+        <div style="font-size:0.55rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--accent)">Jurat</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--white);line-height:1.2">Park Chan-wook presideix el jurat</div>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:0.95rem;line-height:1.7;color:var(--text-muted);flex:1">El cineasta coreà de <em>Oldboy</em> i <em>The Handmaiden</em> presidirà el jurat de la competició principal. El jurat d'Un Certain Regard el presidirà l'actriu francesa Leïla Bekhti.</p>
+        <div style="font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted)">25 de febrer 2026</div>
+      </div>
+
+      <div style="background:var(--bg3);border:1px solid var(--border);padding:2rem;display:flex;flex-direction:column;gap:0.8rem">
+        <div style="font-size:0.55rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--accent)">Palmes d'Honor</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--white);line-height:1.2">Peter Jackson i Barbra Streisand</div>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:0.95rem;line-height:1.7;color:var(--text-muted);flex:1">El director de <em>El Senyor dels Anells</em> i la llegenda del cinema i la música rebran les Palmes d'Or honorífiques en reconeixement a les seves trajectòries.</p>
+        <div style="font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted)">Març 2026</div>
+      </div>
+
+      <div style="background:var(--bg3);border:1px solid var(--border);padding:2rem;display:flex;flex-direction:column;gap:0.8rem">
+        <div style="font-size:0.55rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--accent)">Cerimònia</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--white);line-height:1.2">Eye Haïdara conduirà l'obertura i la clausura</div>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:0.95rem;line-height:1.7;color:var(--text-muted);flex:1">L'actriu francesa Eye Haïdara serà la mestre de cerimònies de les gales d'obertura i clausura de la 79a edició del festival.</p>
+        <div style="font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted)">25 de març 2026</div>
+      </div>
+
+      <div style="background:var(--bg3);border:1px solid var(--border);padding:2rem;display:flex;flex-direction:column;gap:0.8rem">
+        <div style="font-size:0.55rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--accent)">Selecció oficial</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--white);line-height:1.2">2.541 films de 141 països</div>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:0.95rem;line-height:1.7;color:var(--text-muted);flex:1">Mil films més que fa deu anys. La selecció final inclou 22 títols en competició, cinc dels quals dirigits per dones. Almodóvar, Farhadi i Kore-eda lideren el cartell.</p>
+        <div style="font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted)">9 d'abril 2026</div>
+      </div>
+
+      <div style="background:var(--bg3);border:1px solid var(--border);padding:2rem;display:flex;flex-direction:column;gap:0.8rem">
+        <div style="font-size:0.55rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--accent)">Quinzaine des Cinéastes</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--white);line-height:1.2">Balagov obre, Dupieux tanca</div>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:0.95rem;line-height:1.7;color:var(--text-muted);flex:1"><em>Butterfly Jam</em> de Kantemir Balagov obrirà la secció, mentre que el debut en animació de Quentin Dupieux, <em>Vertiginous</em>, la tancarà. La selecció completa es va anunciar el 14 d'abril.</p>
+        <div style="font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--text-muted)">14 d'abril 2026</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- AGENDA -->
+<section id="agenda">
+  <div class="section-inner">
+    <div class="section-label fade-in">Agenda</div>
+    <h2 class="fade-in">Dates clau</h2>
+    <div class="agenda-grid">
+      <div class="agenda-item fade-in">
+        <div class="agenda-date">12</div>
+        <div class="agenda-month">Maig 2026</div>
+        <div class="agenda-event">Cerimònia d'obertura</div>
+        <div class="agenda-sub">The Electric Kiss — Pierre Salvadori (fora de competició)</div>
+      </div>
+      <div class="agenda-item fade-in">
+        <div class="agenda-date">13</div>
+        <div class="agenda-month">Maig 2026</div>
+        <div class="agenda-event">Inici de la Quinzaine des Cinéastes</div>
+        <div class="agenda-sub">Obre amb Butterfly Jam de Kantemir Balagov</div>
+      </div>
+      <div class="agenda-item fade-in">
+        <div class="agenda-date">12–23</div>
+        <div class="agenda-month">Maig 2026</div>
+        <div class="agenda-event">Projeccions oficials</div>
+        <div class="agenda-sub">Competició, Un Certain Regard, Quinzaine, Setmana de la Crítica</div>
+      </div>
+      <div class="agenda-item fade-in">
+        <div class="agenda-date">23</div>
+        <div class="agenda-month">Maig 2026</div>
+        <div class="agenda-event">Cerimònia de clausura</div>
+        <div class="agenda-sub">Entrega de la Palma d'Or i premis oficials</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SELECCIÓ -->
+<section id="seleccio">
+  <div class="section-inner">
+    <div class="section-label fade-in">Programa</div>
+    <h2 class="fade-in">Selecció oficial</h2>
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('competicio', this)">Competició</button>
+      <button class="tab" onclick="switchTab('quinzaine', this)">Quinzaine</button>
+      <button class="tab" onclick="switchTab('ucr', this)">Un Certain Regard</button>
+      <button class="tab" onclick="switchTab('critica', this)">Setmana de la Crítica</button>
+    </div>
+
+    <!-- COMPETICIÓ -->
+    <div class="tab-panel active" id="panel-competicio">
+      <div class="films-grid" id="grid-competicio"></div>
+    </div>
+
+    <!-- QUINZAINE -->
+    <div class="tab-panel" id="panel-quinzaine">
+      <div class="opening-closing">
+        <div class="oc-card">
+          <div class="oc-label">Pel·lícula d'obertura</div>
+          <div class="oc-title">Butterfly Jam</div>
+          <div class="oc-director">Kantemir Balagov</div>
+        </div>
+        <div class="oc-card">
+          <div class="oc-label">Pel·lícula de clausura</div>
+          <div class="oc-title">Vertiginous</div>
+          <div class="oc-director">Quentin Dupieux</div>
+        </div>
+      </div>
+      <div class="films-grid" id="grid-quinzaine"></div>
+    </div>
+
+    <!-- UN CERTAIN REGARD -->
+    <div class="tab-panel" id="panel-ucr">
+      <div class="films-grid" id="grid-ucr"></div>
+    </div>
+
+    <!-- SETMANA CRÍTICA -->
+    <div class="tab-panel" id="panel-critica">
+      <div class="films-grid" id="grid-critica"></div>
+    </div>
+  </div>
+</section>
+
+<!-- LES MEVES CRÍTIQUES -->
+<section id="critiques-cannes">
+  <div class="section-inner">
+    <div class="section-label fade-in">En directe des de Canes</div>
+    <h2 class="fade-in">Les meves crítiques</h2>
+    <div class="critiques-empty fade-in" id="critiques-placeholder">
+      <div class="critiques-empty-icon">🎬</div>
+      <div class="critiques-empty-text">Les crítiques s'aniran publicant durant el festival.</div>
+      <div class="critiques-empty-sub">12 – 23 de maig 2026 · Cannes, França</div>
+      <div class="countdown-wrap" id="countdown"></div>
+    </div>
+    <div id="critiques-grid" style="display:none"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Primer<span>·</span>Pla</div>
+  <div class="footer-copy">79è Festival de Canes · 12–23 de maig 2026</div>
+</footer>
+
+<script>
+const TMDB_KEY = 'a086250f0c1111d515ce7453e899eb8a';
+const IMG = 'https://image.tmdb.org/t/p/w342';
+
+// ── DADES DE LA SELECCIÓ ──────────────────────────────────
+const competicio = [
+  { title:'Parallel Tales',         director:'Asghar Farhadi',              country:'🇮🇷🇫🇷' },
+  { title:'Autofiction',            director:'Pedro Almodóvar',             country:'🇪🇸' },
+  { title:'La Bola Negra',          director:'Ambrossi & Calvo',            country:'🇪🇸' },
+  { title:'Coward',                 director:'Lukas Dhont',                 country:'🇧🇪' },
+  { title:'The Dreamed Adventure',  director:'Valeska Grisebach',           country:'🇩🇪' },
+  { title:'All of a Sudden',        director:'Ryusuke Hamaguchi',           country:'🇯🇵🇫🇷' },
+  { title:'The Unknown',            director:'Arthur Harari',               country:'🇫🇷' },
+  { title:'Garance',                director:'Jeanne Herry',                country:'🇫🇷' },
+  { title:'Hope',                   director:'Na Hong-jin',                 country:'🇰🇷' },
+  { title:'Sheep in the Box',       director:'Hirokazu Kore-eda',           country:'🇯🇵' },
+  { title:'Gentle Monster',         director:'Marie Kreutzer',              country:'🇦🇹' },
+  { title:'The Life of a Woman',    director:'Charline Bourgeois-Tacquet',  country:'🇫🇷' },
+  { title:'The Man I Love',         director:'Ira Sachs',                   country:'🇺🇸' },
+  { title:'The Beloved',            director:'Rodrigo Sorogoyen',           country:'🇪🇸' },
+  { title:'Minotaur',               director:'Andrey Zvyagintsev',          country:'🇷🇺' },
+  { title:'Fatherland',             director:'Paweł Pawlikowski',           country:'🇵🇱🇬🇧' },
+  { title:'Fjord',                  director:'Cristian Mungiu',             country:'🇷🇴' },
+  { title:'Night Stories',          director:'Léa Mysius',                  country:'🇫🇷' },
+  { title:'Our Salvation',          director:'Emmanuel Marre',              country:'🇫🇷' },
+  { title:'Quelques Jours à Nagi',  director:'Koji Fukada',                 country:'🇯🇵' },
+  { title:'Paper Tiger',            director:'James Gray',                  country:'🇺🇸' },
+  { title:'Moulin',                 director:'László Nemes',                country:'🇭🇺' },
+];
+
+const quinzaine = [
+  { title:'Butterfly Jam',       director:'Kantemir Balagov',    country:'🇷🇺',   note:'Apertura' },
+  { title:'Vertiginous',         director:'Quentin Dupieux',     country:'🇫🇷',   note:'Clausura' },
+];
+
+const ucr = [
+  { title:'Teenage Sex and Death at Camp Miasma', director:'Jane Schoenbrun', country:'🇺🇸', note:'Apertura' },
+  { title:'Ulysse',              director:'Laetitia Masson',   country:'🇫🇷',   note:'Clausura' },
+];
+
+const critica = [
+  { title:'In Waves',            director:'Phuong Mai Nguyen', country:'🇻🇳',   note:'Apertura' },
+  { title:'Adieu Monde Cruel',   director:'Félix de Givry',    country:'🇫🇷',   note:'Clausura' },
+];
+
+// ── CERCA A TMDB ──────────────────────────────────────────
+async function fetchPoster(title) {
+  try {
+    const r = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${TMDB_KEY}&query=${encodeURIComponent(title)}&language=en-US`);
+    const d = await r.json();
+    const hit = d.results?.find(m => m.poster_path);
+    return hit ? IMG + hit.poster_path : null;
+  } catch { return null; }
+}
+
+function filmCardHTML(f, idx, gridId) {
+  return `<div class="film-card" id="${gridId}-${idx}">
+    <div class="film-poster">
+      <div class="film-poster-ph" style="background:var(--bg2);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0.5rem;padding:1rem;text-align:center">
+        <div style="font-size:0.55rem;letter-spacing:0.3em;text-transform:uppercase;color:var(--accent);margin-bottom:0.3rem">${f.country}</div>
+        <div style="font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--white);line-height:1.3">${f.title}</div>
+        <div style="width:20px;height:1px;background:var(--border)"></div>
+        <div style="font-size:0.55rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--text-muted)">${f.director}</div>
+      </div>
+    </div>
+    <div class="film-info">
+      <div class="film-title">${f.title}</div>
+      <div class="film-director">${f.director}</div>
+      ${f.note ? `<div style="font-size:0.55rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--accent);margin-top:0.3rem">${f.note}</div>` : ''}
+    </div>
+  </div>`;
+}
+
+async function renderGrid(films, gridId) {
+  const container = document.getElementById(gridId);
+  if (!container) return;
+  container.innerHTML = films.map((f, i) => filmCardHTML(f, i, gridId)).join('');
+}
+
+// ── TABS ──────────────────────────────────────────────────
+const panels = { competicio, quinzaine, ucr, critica };
+const gridIds = { competicio:'grid-competicio', quinzaine:'grid-quinzaine', ucr:'grid-ucr', critica:'grid-critica' };
+const rendered = new Set();
+
+function switchTab(name, btn) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(`panel-${name}`).classList.add('active');
+  if (!rendered.has(name)) {
+    rendered.add(name);
+    renderGrid(panels[name], gridIds[name]);
+  }
+}
+
+// Carrega imatge local per al hero
+const heroImg = document.getElementById('hero-backdrop');
+heroImg.src = 'cannes-redcarpet.jpg';
+heroImg.onload = () => heroImg.classList.add('loaded');
+
+// Render inicial competició
+renderGrid(competicio, 'grid-competicio');
+rendered.add('competicio');
+
+// ── COMPTE ENRERE ─────────────────────────────────────────
+function updateCountdown() {
+  const target = new Date('2026-05-12T09:00:00');
+  const now = new Date();
+  const diff = target - now;
+  if (diff <= 0) {
+    document.getElementById('countdown').innerHTML = `<div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--accent);font-style:italic">El festival ha començat! 🎬</div>`;
+    return;
+  }
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor((diff % 86400000) / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  const s = Math.floor((diff % 60000) / 1000);
+  document.getElementById('countdown').innerHTML = `
+    <div class="countdown-item"><span class="countdown-num">${d}</span><span class="countdown-label">Dies</span></div>
+    <div class="countdown-item"><span class="countdown-num">${String(h).padStart(2,'0')}</span><span class="countdown-label">Hores</span></div>
+    <div class="countdown-item"><span class="countdown-num">${String(m).padStart(2,'0')}</span><span class="countdown-label">Minuts</span></div>
+    <div class="countdown-item"><span class="countdown-num">${String(s).padStart(2,'0')}</span><span class="countdown-label">Segons</span></div>`;
+}
+updateCountdown();
+setInterval(updateCountdown, 1000);
+
+// ── FADE IN ───────────────────────────────────────────────
+const obs = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 80);
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

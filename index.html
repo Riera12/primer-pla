@@ -332,7 +332,26 @@
   .estrena-modal-close { position: absolute; top: 0.6rem; right: 0.6rem; background: rgba(8,8,8,0.85); border: 1px solid var(--border); color: var(--text-muted); font-size: 0.6rem; cursor: pointer; font-family: 'Josefin Sans', sans-serif; letter-spacing: 0.1em; padding: 0.3rem 0.6rem; z-index: 5; transition: all 0.2s; }
   .estrena-modal-close:hover { color: var(--accent); border-color: var(--accent); }
 
-  /* ── CATÀLEG ─────────────────────────────────────────── */
+  /* ── NOTÍCIES ────────────────────────────────────────── */
+  #noticies { border-top: 1px solid var(--border); padding: 5rem 4rem; }
+  .noticies-grid { display: grid; grid-template-columns: 1.8fr 1fr; gap: 3rem; align-items: start; }
+  .noticia-principal { border: 1px solid var(--border); background: var(--bg2); cursor: pointer; transition: background 0.2s; }
+  .noticia-principal:hover { background: var(--bg3); }
+  .noticia-principal-img { width: 100%; aspect-ratio: 16/7; overflow: hidden; position: relative; background: var(--bg3); }
+  .noticia-principal-img img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(20%) brightness(0.8); transition: filter 0.3s; }
+  .noticia-principal:hover .noticia-principal-img img { filter: grayscale(0%) brightness(0.9); }
+  .noticia-principal-body { padding: 1.8rem; }
+  .noticia-tag { font-size: 0.55rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.7rem; }
+  .noticia-title { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 300; color: var(--white); line-height: 1.2; margin-bottom: 0.8rem; }
+  .noticia-excerpt { font-family: 'Cormorant Garamond', serif; font-size: 1rem; line-height: 1.7; color: var(--text-muted); font-style: italic; }
+  .noticia-date { font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--text-muted); margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+  .noticies-llista { display: flex; flex-direction: column; gap: 0; }
+  .noticia-item { padding: 1.2rem 0; border-bottom: 1px solid var(--border); cursor: pointer; transition: background 0.15s; display: flex; flex-direction: column; gap: 0.4rem; }
+  .noticia-item:first-child { border-top: 1px solid var(--border); }
+  .noticia-item:hover .noticia-item-title { color: var(--accent); }
+  .noticia-item-tag { font-size: 0.52rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--accent); }
+  .noticia-item-title { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; color: var(--white); line-height: 1.3; transition: color 0.2s; }
+  .noticia-item-date { font-size: 0.52rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); }
   .cataleg-inner { max-width: 1200px; margin: 0 auto; }
   .cataleg-filters { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2.5rem; align-items: flex-end; }
   .cataleg-filter-group { display: flex; flex-direction: column; gap: 0.5rem; }
@@ -422,6 +441,10 @@
     .gallery-img { height: 60px; }
 
 
+    /* Notícies */
+    #noticies { padding: 3rem 1rem; }
+    .noticies-grid { grid-template-columns: 1fr; gap: 2rem; }
+
     /* About */
     #about { padding: 3rem 1rem; }
     .about-hero { grid-template-columns: 1fr; gap: 2rem; margin-bottom: 3rem; padding-bottom: 3rem; }
@@ -474,6 +497,8 @@
     <ul class="nav-links">
       <li><a href="#critiques">Crítiques</a></li>
       <li><a href="#estrenes">Estrenes</a></li>
+      <li><a href="#noticies">Notícies</a></li>
+      <li><a href="cannes.html" style="color:var(--accent)">Canes 2026</a></li>
       <li><a href="#cataleg">Catàleg</a></li>
       <li><a href="#about">Sobre</a></li>
     </ul>
@@ -644,6 +669,58 @@
 
   </div>
 </div>
+
+<!-- NOTÍCIES -->
+<section id="noticies">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="section-label fade-in">Actualitat</div>
+    <h2 class="fade-in" style="margin-bottom:2.5rem">Notícies</h2>
+    <div class="noticies-grid fade-in">
+
+      <!-- Principal -->
+      <a href="cannes.html" style="text-decoration:none" class="noticia-principal">
+        <div class="noticia-principal-img">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Cannes_Palais_des_festivals.jpg/1280px-Cannes_Palais_des_festivals.jpg" alt="Canes 2026">
+        </div>
+        <div class="noticia-principal-body">
+          <div class="noticia-tag">Canes 2026 · 12–23 de maig</div>
+          <div class="noticia-title">Ja tenim la selecció oficial de la 79a edició del Festival de Canes</div>
+          <div class="noticia-excerpt">Almodóvar, Farhadi, Kore-eda, Hamaguchi i Na Hong-jin lideren una competició amb 22 films de tot el món. Park Chan-wook presidirà el jurat. Primer Pla hi serà present.</div>
+          <div class="noticia-date">9 d'abril 2026</div>
+        </div>
+      </a>
+
+      <!-- Llista -->
+      <div class="noticies-llista">
+        <div class="noticia-item" onclick="window.location='cannes.html'">
+          <div class="noticia-item-tag">Quinzaine des Cinéastes</div>
+          <div class="noticia-item-title">Balagov obre i Dupieux tanca la Quinzaine 2026</div>
+          <div class="noticia-item-date">14 d'abril 2026</div>
+        </div>
+        <div class="noticia-item" onclick="window.location='cannes.html'">
+          <div class="noticia-item-tag">Jurat</div>
+          <div class="noticia-item-title">Park Chan-wook presidirà el jurat de la 79a edició</div>
+          <div class="noticia-item-date">25 de febrer 2026</div>
+        </div>
+        <div class="noticia-item" onclick="window.location='cannes.html'">
+          <div class="noticia-item-tag">Honors</div>
+          <div class="noticia-item-title">Peter Jackson i Barbra Streisand rebran la Palma d'Or honorífica</div>
+          <div class="noticia-item-date">Març 2026</div>
+        </div>
+        <div class="noticia-item" onclick="window.location='cannes.html'">
+          <div class="noticia-item-tag">Pòster oficial</div>
+          <div class="noticia-item-title">Thelma &amp; Louise protagonitzen el cartell del festival</div>
+          <div class="noticia-item-date">9 d'abril 2026</div>
+        </div>
+        <div class="noticia-item" style="border-bottom:none" onclick="window.location='cannes.html'">
+          <div class="noticia-item-tag">Acreditació</div>
+          <div class="noticia-item-title">Primer Pla sol·licita acreditació per a la Quinzaine des Cinéastes</div>
+          <div class="noticia-item-date">Abril 2026</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ABOUT -->
 <section id="about">
@@ -1377,8 +1454,8 @@ async function loadEstrenes(tab) {
   if (estrenesCache[tab]) { renderEstrenes(estrenesCache[tab]); return; }
 
   const endpoint = tab === 'now'
-    ? `/movie/now_playing?language=es-ES&region=ES&api_key=${KEY}`
-    : `/movie/upcoming?language=es-ES&region=ES&api_key=${KEY}`;
+    ? `/movie/now_playing?language=en-US&region=ES&api_key=${KEY}`
+    : `/movie/upcoming?language=en-US&region=ES&api_key=${KEY}`;
 
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 8000);
@@ -1406,16 +1483,18 @@ function renderEstrenes(movies) {
   scroll.innerHTML = movies.map(m => {
     const reviewKey = reviewedTmdbIds[m.id];
     const isReviewed = !!reviewKey;
+    // Espanyol original → títol en castellà | Resta → títol en anglès (fetch en-US)
+    const displayTitle = (m.original_language === 'es') ? m.original_title : m.title;
     const date = m.release_date
       ? new Date(m.release_date).toLocaleDateString('ca-ES', { day:'numeric', month:'short', year:'numeric' })
       : '';
     const reviewed = isReviewed ? `<div class="estrena-reviewed">✓ Resenyada</div>` : '';
-    return `<div class="estrena-card" onclick="openEstrenaModal(${m.id}, '${m.title.replace(/'/g,"\\'")}', '${reviewKey || ''}')">
+    return `<div class="estrena-card" onclick="openEstrenaModal(${m.id}, '${displayTitle.replace(/'/g,"\\'")}', '${reviewKey || ''}')">
       ${reviewed}
       <img class="estrena-poster" src="https://image.tmdb.org/t/p/w342${m.poster_path}"
-        alt="${m.title}" onload="this.classList.add('loaded')">
+        alt="${displayTitle}" onload="this.classList.add('loaded')">
       <div class="estrena-info">
-        <div class="estrena-title">${m.title}</div>
+        <div class="estrena-title">${displayTitle}</div>
         <div class="estrena-date">${date}</div>
       </div>
     </div>`;
