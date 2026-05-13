@@ -160,15 +160,18 @@
 
   @media (max-width: 960px) {
     nav { padding: 1rem 1.5rem; }
-    #hero, #agenda, #seleccio, #critiques-cannes, #sobre, #novetats { padding-left: 1.5rem; padding-right: 1.5rem; }
+    #hero, #agenda, #seleccio, #critiques-cannes { padding-left: 1.5rem; padding-right: 1.5rem; }
+    section[id="sobre"], section[id="novetats"] { padding-left: 1.5rem !important; padding-right: 1.5rem !important; }
     .agenda-grid { grid-template-columns: 1fr 1fr; }
     .hero-badge { display: none; }
   }
   @media (max-width: 600px) {
+    html, body { overflow-x: hidden; }
     nav { padding: 0.9rem 1rem; }
     .nav-links { display: none; }
     #hero { padding: 70px 1rem 3rem; }
-    #agenda, #seleccio, #critiques-cannes, #sobre, #novetats { padding: 3rem 1rem; }
+    #agenda, #seleccio, #critiques-cannes { padding: 3rem 1rem; }
+    section[id="sobre"], section[id="novetats"] { padding: 3rem 1rem !important; }
     .agenda-grid { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
     .agenda-item { padding: 1.2rem; }
     .opening-closing { grid-template-columns: 1fr; }
@@ -176,9 +179,8 @@
     footer { padding: 2rem 1rem; flex-direction: column; text-align: center; }
     h1 { font-size: 3.5rem; }
     .hero-year { display: none; }
-    #sobre .fade-in > div:first-child { grid-template-columns: 1fr !important; }
-    #sobre .fade-in > div:last-child { grid-template-columns: 1fr !important; }
-    #novetats .fade-in { grid-template-columns: 1fr !important; }
+    .countdown-wrap { gap: 0.8rem; }
+    .countdown-item { padding: 0.8rem 1rem; }
   }
 </style>
 </head>
@@ -243,7 +245,7 @@
   <div class="section-inner">
     <div class="section-label fade-in">El festival</div>
     <h2 class="fade-in">Una mica d'història</h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start" class="fade-in">
+    <div class="sobre-grid fade-in" style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start">
       <div>
         <p style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;line-height:1.9;color:var(--text);margin-bottom:1.5rem;text-align:justify;hyphens:auto">Tot va començar amb una indignació. L'any <strong style="color:var(--accent)">1938</strong>, el govern francès va abandonar el Festival de Venècia quan va comprovar que Mussolini el manipulava per premiar films nazis i feixistes. Jean Zay, ministre d'Educació Nacional, va decidir crear un festival alternatiu i independent: el Festival de Canes.</p>
         <p style="font-family:'Cormorant Garamond',serif;font-size:1.15rem;line-height:1.9;color:var(--text);margin-bottom:1.5rem;text-align:justify;hyphens:auto">La guerra ho va aturar tot. L'edició inaugural es va celebrar finalment el setembre de <strong style="color:var(--accent)">1946</strong>, en un clima d'eufòria postbèl·lica, amb estrelles com Cary Grant i Marlene Dietrich als carrers de Cannes. Des de llavors, el festival ha crescut fins a convertir-se en l'esdeveniment cinematogràfic més important del món, per davant de Venècia i Berlín.</p>
@@ -276,7 +278,7 @@
     </div>
 
     <!-- Galeria visual amb imatges reals de Canes -->
-    <div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:0.5rem;margin-top:4rem" class="fade-in">
+    <div class="sobre-gallery fade-in" style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:0.5rem;margin-top:4rem">
       <div style="position:relative;overflow:hidden;aspect-ratio:16/9;border:1px solid var(--border)">
         <img src="palais-vue-sur-la-montee-des-marchespalaisdesfestival-1920x960.jpg" alt="Palais des Festivals"
           style="width:100%;height:100%;object-fit:cover;filter:grayscale(15%) brightness(0.85);transition:filter 0.4s"
@@ -313,7 +315,7 @@
   <div class="section-inner">
     <div class="section-label fade-in">Actualitat</div>
     <h2 class="fade-in">Novetats de la 79a edició</h2>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px" class="fade-in">
+    <div class="novetats-grid fade-in" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px">
 
       <div style="background:var(--bg3);border:1px solid var(--border);overflow:hidden;display:flex;flex-direction:column">
         <img src="Cannes-Poster-2026.jpg" alt="Pòster oficial Canes 2026"
@@ -615,7 +617,23 @@ heroImg.onload = () => heroImg.classList.add('loaded');
 renderGrid(competicio, 'grid-competicio');
 rendered.add('competicio');
 
-// ── COMPTE ENRERE ─────────────────────────────────────────
+// Fix mòbil: col·lapsa grids inline a 1 columna
+function fixMobileGrids() {
+  if (window.innerWidth > 600) return;
+  document.querySelectorAll('[style]').forEach(el => {
+    const s = el.getAttribute('style') || '';
+    if (s.includes('grid-template-columns') && !s.includes('repeat(4') && !s.includes('1fr 1fr')) {
+      el.style.gridTemplateColumns = '1fr';
+    }
+    // Aspecte ràtio: canvia 3/4 a 16/9 en mòbil
+    if (s.includes('aspect-ratio') && s.includes('3/4')) {
+      el.style.aspectRatio = '16/9';
+    }
+  });
+}
+// Executa quan el DOM és llest i en canviar mida
+fixMobileGrids();
+window.addEventListener('resize', fixMobileGrids);
 function updateCountdown() {
   const target = new Date('2026-05-12T09:00:00');
   const now = new Date();
