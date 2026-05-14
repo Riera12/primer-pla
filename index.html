@@ -514,7 +514,7 @@
 <!-- HERO -->
 <section id="hero">
   <div class="hero-bg"></div>
-  <div class="hero-poster"><img id="hero-img" src="" alt="Sound of Falling"></div>
+  <div class="hero-poster"><img id="hero-img" src="" alt="Resurrection"></div>
   <div class="hero-eyebrow">Crítica de cinema en català</div>
   <h1>El cinema<br>vist de <em>prop.</em></h1>
   <p class="hero-sub">Cobertura de festivals internacionals — Venècia, Sitges, Canes — des d'una mirada catalana.</p>
@@ -528,18 +528,18 @@
       <div class="featured-tag">Destacat · Cannes 2025</div>
       <div class="featured-poster">
         <div class="poster-ph">Pòster</div>
-        <img id="feat-img" src="" alt="Sound of Falling">
+        <img id="feat-img" src="" alt="Resurrection">
       </div>
-      <div class="featured-title">Sound of Falling</div>
-      <div class="featured-director">Mascha Schilinski</div>
-      <div class="rating"><span class="rating-num">4</span><span class="rating-denom">/ 5</span></div>
-      <p class="featured-excerpt">"Una experiència que costa d'oblidar. Es continua pensant dies després, tornant-hi en imatges o en sons."</p>
-      <a class="read-more" onclick="openModal('soundfalling')">Llegir la crítica completa</a>
+      <div class="featured-title">Resurrection</div>
+      <div class="featured-director">Bi Gan</div>
+      <div class="rating"><span class="rating-num">5</span><span class="rating-denom">/ 5</span></div>
+      <p class="featured-excerpt">"Som nosaltres, fantasmes de llum, els que sostenim la flama."</p>
+      <a class="read-more" onclick="openModal('resurrection')">Llegir la crítica completa</a>
     </div>
     <div class="featured-body fade-in">
-      <p>La nova proposta de Mascha Schilinski, <em>Sound of Falling</em>, arriba als cinemes gairebé un any després de la seva estrena al Festival de Cannes on se li va atorgar el Gran Premi del Jurat ex aequo amb <em>Sirat</em> d'Oliver Laxe. Schilinski, que s'havia estrenat amb <em>Dark Blue Girl</em> al 2017, sembla haver trobat un estil d'una maduresa sorprenent i amb una bellesa molt profunda i premeditada.</p>
-      <p>El film es desenvolupa al voltant d'una granja al nord d'Alemanya i de quatre noies que viuen en èpoques diferents del segle XX. Totes passen la seva joventut en la mateixa masia al llarg d'un segle, i tot i estar separades pels anys, hi apareixen similituds entre les seves vides. La granja no és només un escenari, sinó que és un personatge més.</p>
-      <a class="read-more" onclick="openModal('soundfalling')">Continuar llegint →</a>
+      <p>«Un OVNI, una creació extraordinària». Així va definir Juliette Binoche l'última obra de Bi Gan, guanyadora del Prix Spécial du Jury a Canes 2025. El director xinès de 36 anys torna set anys després de <em>Long Day's Journey Into Night</em> amb el seu llargmetratge més ambiciós.</p>
+      <p>En un futur on la humanitat ha renunciat a somiar per ser immortal, un delirant somia per última vegada, regalant-nos quatre histories oníriques que recorren cent anys de cinema xinès i mundial. Una carta d'amor al mitjà, una elegia i un sutra cinèfil disfressat d'odissea.</p>
+      <a class="read-more" onclick="openModal('resurrection')">Continuar llegint →</a>
     </div>
   </div>
 </section>
@@ -574,6 +574,20 @@
   </div>
   <div class="reviews-grid" id="reviews-grid">
     <p class="no-results" id="no-results" style="display:none">No s'han trobat resultats.</p>
+
+    <div class="review-card fade-in" onclick="openModal('resurrection')" data-festival="Cannes 2025" data-type="Crítica">
+      <div class="card-poster">
+        <div class="card-poster-ph">Resurrection</div>
+        <img src="" alt="Resurrection">
+      </div>
+      <div class="card-body">
+        <div class="card-festival">Cannes 2025</div>
+        <div class="card-title">Resurrection</div>
+        <div class="card-director">Bi Gan</div>
+        <p class="card-excerpt">"Som nosaltres, fantasmes de llum, els que sostenim la flama."</p>
+        <div class="card-footer"><span class="card-rating">5 / 5</span><span class="card-type">Crítica</span></div>
+      </div>
+    </div>
 
     <div class="review-card fade-in" onclick="openModal('soundfalling')" data-festival="Cannes 2025" data-type="Crítica">
       <div class="card-poster">
@@ -686,7 +700,7 @@
       <!-- Principal -->
       <a href="cannes.html" style="text-decoration:none" class="noticia-principal">
         <div class="noticia-principal-img">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/Cannes_Palais_des_festivals.jpg/1280px-Cannes_Palais_des_festivals.jpg" alt="Canes 2026">
+          <img src="Cannes-Poster-2026.jpg" alt="Canes 2026">
         </div>
         <div class="noticia-principal-body">
           <div class="noticia-tag">Canes 2026 · 12–23 de maig</div>
@@ -977,13 +991,14 @@ const IMG_B    = 'https://image.tmdb.org/t/p/w1280';
 const KEY      = 'a086250f0c1111d515ce7453e899eb8a';
 
 const MOVIE_IDS = {
-  silent:      1168719,
-  alpha:       1284460,
-  goodboy:     1422096,
-  romeria:     1182861,
-  furious:     1280738,
-  lostlands:   324544,
+  silent:       1168719,
+  alpha:        1284460,
+  goodboy:      1422096,
+  romeria:      1182861,
+  furious:      1280738,
+  lostlands:    324544,
   soundfalling: 1221061,
+  resurrection: 878608,
 };
 
 function setImg(el, src) {
@@ -1007,7 +1022,7 @@ async function tmdb(path) {
 }
 
 async function loadAllPosters() {
-  const keys  = ['soundfalling','silent','alpha','goodboy','romeria','furious','lostlands'];
+  const keys  = ['resurrection','soundfalling','silent','alpha','goodboy','romeria','furious','lostlands'];
   const cards = document.querySelectorAll('.card-poster img');
 
   // Carrega TOTS en paral·lel (molt més ràpid en mòbil)
@@ -1021,9 +1036,15 @@ async function loadAllPosters() {
     const src = IMG_W + d.poster_path;
     setImg(cards[i], src);
     reviews[key]._p = src;
-    if (key === 'soundfalling') {
-      setImg(document.getElementById('hero-img'), src);
+    if (key === 'resurrection') {
       setImg(document.getElementById('feat-img'), src);
+      // Carrega el backdrop específic (índex 1 — el vermell amb figura negra)
+      tmdb(`/movie/${MOVIE_IDS.resurrection}/images`).then(imgData => {
+        if (imgData?.backdrops?.length > 0) {
+          const heroEl = document.getElementById('hero-img');
+          setImg(heroEl, 'https://image.tmdb.org/t/p/original' + imgData.backdrops[0].file_path);
+        }
+      });
     }
   });
 }
@@ -1222,6 +1243,17 @@ function extScoresHTML(scores) {
 
 // ── REVIEWS ──────────────────────────────────────────────
 const reviews = {
+  resurrection: { tag:'Cannes 2025 · Prix Spécial du Jury', title:'Resurrection', director:'Bi Gan', score:5,
+    aliases: ['resurreccio', 'resurreccion', 'bi gan', 'jackson yee', 'shu qi', 'somni', 'dream', 'immortal', 'kaili blues', 'long day journey', 'bi gan film'],
+    scores: { rt: 90, imdb: '7.2', mc: 87 },
+    text:`<p>«Un OVNI, una creació extraordinària». Així va definir Juliette Binoche, presidenta del jurat, l'última obra de Bi Gan al Festival de Cannes 2025, on va aconseguir el Prix Spécial du Jury, i no li faltava raó. Per fi tenim als cinemes <em>Resurrection</em> (2025), una experiència obligatòria per a qualsevol persona que estimi el cinema i hi vegi alguna cosa més enllà. El director xinès de només 36 anys, ja va deixar petjada amb <em>Kaili Blues</em> (2015) i, sobretot, amb <em>Long Day's Journey Into Night</em> (2018), amb el seu mític pla seqüència de 59 minuts en 3D. Set anys després, torna amb el seu tercer i clarament més ambiciós llargmetratge. Per a mi, una de les pel·lícules més importants de l'any, per no dir de la dècada.</p>
+    <p>En un futur en què la humanitat ha descobert que, per tal de ser immortal, cal deixar de somiar, apareixen uns individus anomenats delirants, que s'hi neguen i decideixen envellir mantenint el seu imaginari. Una caçadora en troba un, i ell comença a somiar per última vegada, regalant-nos quatre fantàstiques històries oníriques (a estones fins i tot febrils), cadascuna inspirada en una etapa diferent del cinema.</p>
+    <p>Però Bi Gan no es queda en el simple homenatge, sinó que cada capítol s'articula al voltant d'un dels sis sentits del budisme i d'un moment de la modernitat xinesa, des de l'opi de la dinastia Qing fins a la nit del Y2K. Entre capítols, una espelma es consumeix i una altra s'encén. La imatge ve d'un text budista on un monjo explica que el que es transmet d'una vida a l'altra no és la flama, sinó la causació. Aplicat al cinema, l'argument és claríssim: el cinema no es mor, simplement canvia. Així el film acaba sent una carta d'amor al mitjà, una elegia per deixar de ser-ho i un sutra cinèfil disfressat d'odissea per cent anys de maneres de filmar.</p>
+    <p>En l'apartat tècnic és simplement excel·lent. Una paleta cromàtica que muta amb cada capítol, plena de simbolisme, una composició de plans mil·limètrica i, sobretot, un pla seqüència d'uns trenta minuts ambientat a la nit de cap d'any del 1999 pels carrerons de Chongqing, que considero una de les cimeres del llenguatge cinematogràfic actual. La banda sonora hi té molt a dir, sent M83, el projecte d'Anthony Gonzalez, qui signa un fil musical que combina cordes i sintetitzadors, i que reescriu de manera gairebé literal el tema de <em>Vertigo</em> de Bernard Herrmann, incloent Hitchcock i l'obsessió per la imatge dins del simbolisme cinèfil de Bi Gan.</p>
+    <p>Un altre dels principals pilars del film en són les actuacions. Jackson Yee interpreta cinc personatges diferents, com un mateix individu migrant a través de les seves pròpies formes en somnis. D'altra banda, Shu Qi, l'actriu fetitxe de Hou Hsiao-hsien, aporta una presència increïble en el paper de la caçadora. Els dos ens acompanyen amb una naturalitat tan gran, que en algun moment deixem de notar que estem veient una pel·lícula, com si el seu somni i el nostre es solapessin, sent la sala el lloc on convergeixen.</p>
+    <p>I aquí és on <em>Resurrection</em> fa el seu últim i potser més bell gest. La pel·lícula s'obre i es tanca amb una sala de cinema. Al final, quan dins el film s'apaguen les llums, a fora s'encenen els nostres, i som nosaltres els que tornem a la realitat després de 160 minuts. La sala fosa que ens mostra Bi Gan no és un funeral del cinema, sinó un mirall. Som nosaltres, fantasmes de llum, els que sostenim la flama.</p>
+    <p><em>Resurrection</em> m'ha marcat i emocionat moltíssim. És d'aquelles pel·lícules que demanen temps per pair-les, i per això en les pròximes setmanes publicaré a Primer Pla un videoanàlisi en profunditat. Fins llavors, si encara la teniu a alguna sala a prop, no la deixeu escapar: és l'experiència cinematogràfica obligatòria d'aquest any.</p>` },
+
   soundfalling: { tag:'Cannes 2025 · Gran Premi del Jurat', title:'Sound of Falling', director:'Mascha Schilinski', score:4,
     aliases: ['so of falling', 'in die sonne schauen', 'schilinski', 'so falling', 'sonido caida', 'so de caure', 'granja', 'alemanya', 'cannes', 'gran premi'],
     scores: { rt: 95, imdb: '7.1', mc: 91 },
@@ -1275,7 +1307,7 @@ document.querySelectorAll('.review-card').forEach(card => {
   if (el) el.innerHTML = buildStars(r.score, 13);
 });
 const featRating = document.querySelector('.rating');
-if (featRating) featRating.innerHTML = buildStars(4, 22);
+if (featRating) featRating.innerHTML = buildStars(5, 22);
 
 // ── MODAL ────────────────────────────────────────────────
 async function openModal(id) {
@@ -1610,6 +1642,7 @@ function closeEstrenaModal(e) {
 // Carrega inicial
 loadEstrenes('now');
 const catalogData = [
+  { id:'resurrection',   festival:'Cannes 2025',  year:2025, country:'Xina',             genres:['Ciència-ficció','Drama'] },
   { id:'soundfalling', festival:'Cannes 2025',  year:2025, country:'Alemanya',        genres:['Drama'] },
   { id:'romeria',      festival:'Cannes 2025',  year:2025, country:'Espanya',          genres:['Drama'] },
   { id:'silent',       festival:'Venècia 2025', year:2025, country:'Hongria',          genres:['Drama'] },
