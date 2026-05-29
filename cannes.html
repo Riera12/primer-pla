@@ -765,18 +765,20 @@ function fixMobileGrids() {
 fixMobileGrids();
 window.addEventListener('resize', fixMobileGrids);
 function updateCountdown() {
+  const el = document.getElementById('countdown');
+  if (!el) return;
   const target = new Date('2026-05-12T09:00:00');
   const now = new Date();
   const diff = target - now;
   if (diff <= 0) {
-    document.getElementById('countdown').innerHTML = `<div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--accent);font-style:italic">El festival ha començat! 🎬</div>`;
+    el.innerHTML = `<div style="font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--accent);font-style:italic">El festival ja ha tingut lloc 🎬</div>`;
     return;
   }
   const d = Math.floor(diff / 86400000);
   const h = Math.floor((diff % 86400000) / 3600000);
   const m = Math.floor((diff % 3600000) / 60000);
   const s = Math.floor((diff % 60000) / 1000);
-  document.getElementById('countdown').innerHTML = `
+  el.innerHTML = `
     <div class="countdown-item"><span class="countdown-num">${d}</span><span class="countdown-label">Dies</span></div>
     <div class="countdown-item"><span class="countdown-num">${String(h).padStart(2,'0')}</span><span class="countdown-label">Hores</span></div>
     <div class="countdown-item"><span class="countdown-num">${String(m).padStart(2,'0')}</span><span class="countdown-label">Minuts</span></div>
