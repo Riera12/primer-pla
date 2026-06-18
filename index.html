@@ -569,11 +569,26 @@
     <button class="filter-chip" onclick="setFilter('Venècia 2025', this)">Venècia 2025</button>
     <button class="filter-chip" onclick="setFilter('Sitges 2025', this)">Sitges 2025</button>
     <button class="filter-chip" onclick="setFilter('Cinema', this)">Cinema</button>
+    <button class="filter-chip" onclick="setFilter('Retrocrítica', this)">Retrocrítiques</button>
     <button class="filter-chip" onclick="setFilter('Crítica', this)">Crítiques</button>
     <button class="filter-chip" onclick="setFilter('Breu', this)">Breus</button>
   </div>
   <div class="reviews-grid" id="reviews-grid">
     <p class="no-results" id="no-results" style="display:none">No s'han trobat resultats.</p>
+
+    <div class="review-card fade-in" onclick="openModal('closeencounters')" data-festival="Retrocrítica" data-type="Crítica">
+      <div class="card-poster">
+        <div class="card-poster-ph">Close Encounters</div>
+        <img src="" alt="Close Encounters of the Third Kind">
+      </div>
+      <div class="card-body">
+        <div class="card-festival">Retrocrítica · 1977</div>
+        <div class="card-title">Close Encounters of the Third Kind</div>
+        <div class="card-director">Steven Spielberg</div>
+        <p class="card-excerpt">"Encara no hem trobat raó per dubtar d'Spielberg."</p>
+        <div class="card-footer"><span class="card-rating">5 / 5</span><span class="card-type">Crítica</span></div>
+      </div>
+    </div>
 
     <div class="review-card fade-in" onclick="openModal('resurrection')" data-festival="Cannes 2025" data-type="Crítica">
       <div class="card-poster">
@@ -854,6 +869,7 @@
           <option value="Venècia 2025">Venècia 2025</option>
           <option value="Sitges 2025">Sitges 2025</option>
           <option value="Cinema">Cinema</option>
+          <option value="Retrocrítica">Retrocrítica</option>
         </select>
       </div>
       <div class="cataleg-filter-group">
@@ -990,14 +1006,15 @@ const IMG_B    = 'https://image.tmdb.org/t/p/w1280';
 const KEY      = 'a086250f0c1111d515ce7453e899eb8a';
 
 const MOVIE_IDS = {
-  silent:       1168719,
-  alpha:        1284460,
-  goodboy:      1422096,
-  romeria:      1182861,
-  furious:      1280738,
-  lostlands:    324544,
-  soundfalling: 1221061,
-  resurrection: 878608,
+  silent:          1168719,
+  alpha:           1284460,
+  goodboy:         1422096,
+  romeria:         1182861,
+  furious:         1280738,
+  lostlands:       324544,
+  soundfalling:    1221061,
+  resurrection:    878608,
+  closeencounters: 840,
 };
 
 function setImg(el, src) {
@@ -1021,7 +1038,7 @@ async function tmdb(path) {
 }
 
 async function loadAllPosters() {
-  const keys  = ['resurrection','soundfalling','silent','alpha','goodboy','romeria','furious','lostlands'];
+  const keys  = ['closeencounters','resurrection','soundfalling','silent','alpha','goodboy','romeria','furious','lostlands'];
   const cards = document.querySelectorAll('.card-poster img');
 
   // Carrega TOTS en paral·lel (molt més ràpid en mòbil)
@@ -1242,6 +1259,14 @@ function extScoresHTML(scores) {
 
 // ── REVIEWS ──────────────────────────────────────────────
 const reviews = {
+  closeencounters: { tag:'Retrocrítica · 1977', title:'Close Encounters of the Third Kind', director:'Steven Spielberg', score:5,
+    aliases: ['troves de la tercera fase', 'encuentros cercanos', 'spielberg', 'truffaut', 'richard dreyfuss', 'john williams', 'disclosure day', 'extraterrestre', 'ovni', 'naus'],
+    scores: { rt: 96, imdb: '7.6', mc: 90 },
+    text:`<p>Revisitar <em>Close Encounters of the Third Kind</em> abans de l'estrena de <em>Disclosure Day</em>, m'ha fet recordar perquè Steven Spielberg continua sent, gairebé cinquanta anys després, un dels millors directors en actiu. Estrenada el 1977, la pel·lícula continua sent avui una de les obres més reconegudes del seu creador, i la peça central de la seva mirada sobre la vida més enllà de la Terra. Més que plantejar-nos si uns visitants suposarien una amenaça, Spielberg ens llança una pregunta molt més incòmoda: estaríem preparats per a aquest contacte?</p>
+    <p>Com és ja habitual, Spielberg construeix un film de ciència-ficció, ple d'emoció i catarsi, sense necessitat de recórrer a l'espectacle buit. La història segueix dos personatges que viuen de primera mà un avistament de vida extraterrestre: Roy Neary (Richard Dreyfuss), un reparador de línies elèctriques, i Jillian Guiler (Melinda Dillon), mare del nen Barry (Cary Guffey). Des d'aquell moment comparteixen un gran impuls (inclús obsessiu) per una mateixa idea, inexplicable fins i tot per a ells mateixos. Les dues trajectòries avancen en paral·lel a la d'un investigador francès, Claude Lacombe, interpretat per François Truffaut, que es prepara per a un primer contacte oficial (una trobada de tercera fase) entre representants de la terra i aquests visitants. Truffaut fa la seva única aparició de la seva carrera en una pel·lícula que no havia dirigit ell mateix, i a la qual hauria accedit sobretot per documentar-se sobre l'art d'actuar per a un llibre que mai va arribar a escriure. Durant el rodatge va confessar sentir-se desbordat per l'escala de les produccions americanes, venint de l'intimisme de la Nouvelle Vague, però, tot i això, la seva presència aporta a la pel·lícula una capa de credibilitat quasi documental, com si un cineasta europeu hagués estat convidat a observar de prop l'excés nord-americà. Al llarg del metratge, la trama es desplega com un drama èpic que reflexiona sobre el preu de l'obsessió, el xoc entre realitats, i un cert pacifisme a través d'un llenguatge universal: la música i les matemàtiques. Tot això avança amb un ritme que ens manté enganxats a la pantalla de principi a fi.</p>
+    <p>És impossible parlar de la pel·lícula sense fixar-se en la seva banda sonora, signada per John Williams, que en aquell moment ja portava tres pel·lícules consecutives al costat d'Spielberg, i que ja havien definit el thriller modern amb tan sols dues notes a <em>Jaws</em> (1975). A <em>Close Encounters</em>, aquella sintonia es transforma en una frase de cinc notes, que funciona tant com a tema musical i com a idioma literal de contacte. La banda sonora, en els moments de màxima emoció torna a fer-se evident aquí, i ens porta cap a una culminació catàrtica que continua funcionant intacta gairebé cinquanta anys després de l'estrena, demostrant com de necessària es va tornar la música de Williams pel cinema d'Spielberg.</p>
+    <p>Tot això arriba avui amb una gran rellevància. Gairebé cinquanta anys després, Spielberg torna al gènere extraterrestre amb <em>Disclosure Day</em>, reunint-se de nou amb John Williams en la seva trentena col·laboració conjunta, sent en certa manera un cercle que es tanca amb la mateixa admiració per la meravella amb què va començar. Ja l'he pogut veure i en els propers dies us en portaré les meves impressions. De moment només cal dir que <em>Close Encounters</em> i <em>Disclosure Day</em>, demostren, gairebé amb mig segle de diferència, que encara no hem trobat raó per dubtar d'Spielberg.</p>` },
+
   resurrection: { tag:'Cannes 2025 · Prix Spécial du Jury', title:'Resurrection', director:'Bi Gan', score:5,
     aliases: ['resurreccio', 'resurreccion', 'bi gan', 'jackson yee', 'shu qi', 'somni', 'dream', 'immortal', 'kaili blues', 'long day journey', 'bi gan film'],
     scores: { rt: 90, imdb: '7.2', mc: 87 },
@@ -1641,6 +1666,7 @@ function closeEstrenaModal(e) {
 // Carrega inicial
 loadEstrenes('now');
 const catalogData = [
+  { id:'closeencounters', festival:'Retrocrítica', year:1977, country:'EUA',             genres:['Ciència-ficció','Drama'] },
   { id:'resurrection',   festival:'Cannes 2025',  year:2025, country:'Xina',             genres:['Ciència-ficció','Drama'] },
   { id:'soundfalling', festival:'Cannes 2025',  year:2025, country:'Alemanya',        genres:['Drama'] },
   { id:'romeria',      festival:'Cannes 2025',  year:2025, country:'Espanya',          genres:['Drama'] },
